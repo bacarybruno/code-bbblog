@@ -7,10 +7,7 @@ import rollupNodePolyFill from "rollup-plugin-node-polyfills";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  root: "src",
-  publicDir: "../public",
   build: {
-    outDir: "../dist",
     rollupOptions: {
       plugins: [rollupNodePolyFill({}), splitVendorChunkPlugin()],
     },
