@@ -23,6 +23,10 @@ const StyledParagraph = styled.p`
   & > vscode-link {
     font-size: unset;
   }
+  & > img {
+    display: flex;
+    margin: auto;
+  }
 `;
 
 const StyledLi = styled.li`

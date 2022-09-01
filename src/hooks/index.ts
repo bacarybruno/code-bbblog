@@ -1,1 +1,2 @@
-export { usePosts, usePost } from "./use-posts";
+export { usePosts } from "./use-posts";
+export { usePost } from "./use-post";
