@@ -9,7 +9,16 @@ type MarkdownProps = {
 };
 
 const StyledImg = styled.img`
-  max-width: 100%;
+  && {
+    max-width: 100%;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  & + em {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
 `;
 
 const StyledH1 = styled.h1`
@@ -36,7 +45,7 @@ const StyledLi = styled.li`
   }
 `;
 
-const components: Record<string, (args: any) => void> = {
+const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
   img: (props) => {
     return <StyledImg {...props} referrerPolicy="no-referrer" />;
   },
@@ -61,7 +70,12 @@ const components: Record<string, (args: any) => void> = {
   },
   a: ({ href, children, className }) => {
     return (
-      <VSCodeLink href={href} target="_blank" className={className}>
+      <VSCodeLink
+        href={href}
+        target="_blank"
+        className={className}
+        style={{ fontSize: "inherit" }}
+      >
         {children}
       </VSCodeLink>
     );

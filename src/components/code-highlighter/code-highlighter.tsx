@@ -2,7 +2,7 @@ import "codemirror/mode/javascript/javascript";
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import { EditorConfiguration } from "codemirror";
 import { useRef } from "react";
-import { ControlsWrapper, EditorWrapper, StyledCode, Wrapper } from "./styles";
+import { ControlsWrapper, StyledCode, Wrapper } from "./styles";
 
 type CodeHighlighterProps = {
   code: string;
@@ -66,8 +66,12 @@ export const CodeHighlighter = ({
   };
 
   const editorWillUnmount = () => {
-    editor.current.display.wrapper.remove();
-    wrapper.current.hydrated = false;
+    if (editor.current) {
+      editor.current.display.wrapper.remove();
+    }
+    if (wrapper.current) {
+      wrapper.current.hydrated = false;
+    }
   };
 
   if (inline) {
@@ -76,20 +80,16 @@ export const CodeHighlighter = ({
 
   return (
     <Wrapper>
-      <EditorWrapper>
-        <div>
-          <ControlsWrapper>
-            <Controls />
-          </ControlsWrapper>
-          <CodeMirror
-            value={String(code).replace(/\n$/, "")}
-            options={options}
-            ref={wrapper}
-            editorDidMount={(e) => (editor.current = e)}
-            editorWillUnmount={editorWillUnmount}
-          />
-        </div>
-      </EditorWrapper>
+      <ControlsWrapper>
+        <Controls />
+      </ControlsWrapper>
+      <CodeMirror
+        value={String(code).replace(/\n$/, "")}
+        options={options}
+        ref={wrapper}
+        editorDidMount={(e) => (editor.current = e)}
+        editorWillUnmount={editorWillUnmount}
+      />
     </Wrapper>
   );
 };
