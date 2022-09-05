@@ -45,10 +45,6 @@ const StyledLi = styled.li`
   }
 `;
 
-const StyledVSCodeLink = styled(VSCodeLink)`
-  font-size: inherit;
-`;
-
 const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
   img: (props) => {
     return <StyledImg {...props} referrerPolicy="no-referrer" />;
@@ -74,9 +70,14 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
   },
   a: ({ href, children, className }) => {
     return (
-      <StyledVSCodeLink href={href} target="_blank" className={className}>
+      <VSCodeLink
+        href={href}
+        target="_blank"
+        className={className}
+        style={{ fontSize: "inherit" }}
+      >
         {children}
-      </StyledVSCodeLink>
+      </VSCodeLink>
     );
   },
   header: (props) => {
