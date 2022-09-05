@@ -74,7 +74,7 @@ export const ListItem = styled.li<{ active?: boolean }>`
   cursor: pointer;
   background-color: ${(props) => (props.active ? "#37373d" : "transparent")};
   &:hover {
-    background-color: #2a2d2e;
+    background-color: ${(props) => (props.active ? "#37373d" : "#2a2d2e")};
   }
 `;
 
