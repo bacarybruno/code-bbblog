@@ -3,6 +3,7 @@ import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react";
 import rehypeRaw from "rehype-raw";
 import { styled } from "@linaria/react";
 import { CodeHighlighter } from "./index";
+import { slugify } from "../utils";
 
 type MarkdownProps = {
   content: string;
@@ -21,7 +22,7 @@ const StyledImg = styled.img`
   }
 `;
 
-const StyledH1 = styled.h1`
+export const StyledHeader = styled.h1`
   padding: 5px 0 0;
   border: none;
   font-size: 2.7em;
@@ -70,18 +71,17 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
   },
   a: ({ href, children, className }) => {
     return (
-      <VSCodeLink
-        href={href}
-        target="_blank"
-        className={className}
-        style={{ fontSize: "inherit" }}
-      >
+      <VSCodeLink href={href} target="_blank" className={className}>
         {children}
       </VSCodeLink>
     );
   },
   header: (props) => {
-    return <StyledH1 {...props} />;
+    return <StyledHeader {...props} />;
+  },
+  h1: (props) => {
+    const text = props.children[0];
+    return <h1 {...props} id={slugify(typeof text === "string" ? text : "")} />;
   },
   p: (props) => {
     return <StyledParagraph {...props} />;
