@@ -15,6 +15,7 @@ import {
   StyledTabpanelTitle,
   TabContainer,
 } from "./styles";
+import { StyledHeader } from "../markdown";
 
 type TabpanelIconProps = {
   active?: boolean;
@@ -201,7 +202,14 @@ export const Tabpane = () => {
       </StyledTabpaneHeaderContainer>
       <StyledTabpaneContainer>
         <StyledTabpaneContent>
-          {currentTab && <Markdown content={currentTab.body} />}
+          {currentTab && (
+            <>
+              {currentTab.type === "post" && (
+                <StyledHeader>{currentTab.title}</StyledHeader>
+              )}
+              <Markdown content={currentTab.body} />
+            </>
+          )}
         </StyledTabpaneContent>
       </StyledTabpaneContainer>
     </>
