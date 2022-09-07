@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useLocation, useRoute } from "wouter";
-import { Flexbox, SvgIcon, Markdown } from "../index";
+import { Flexbox, SvgIcon } from "../index";
 import { PageTab, useTabsStore } from "../../store";
 import { defaultPage, findPage } from "../../pages";
 import { usePost } from "../../hooks";
@@ -15,7 +15,9 @@ import {
   StyledTabpanelTitle,
   TabContainer,
 } from "./styles";
-import { StyledHeader } from "../markdown";
+import { StyledHeader } from "../markdown/styles";
+
+const Markdown = React.lazy(() => import("../markdown/markdown"));
 
 type TabpanelIconProps = {
   active?: boolean;
@@ -217,7 +219,9 @@ export const Tabpane = () => {
               {currentTab.type === "post" && (
                 <StyledHeader>{currentTab.title}</StyledHeader>
               )}
-              <Markdown content={currentTab.body} />
+              <Suspense fallback={null}>
+                <Markdown content={currentTab.body} />
+              </Suspense>
             </>
           )}
         </StyledTabpaneContent>
