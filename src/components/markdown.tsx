@@ -2,12 +2,22 @@ import ReactMarkdown from "react-markdown";
 import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react";
 import rehypeRaw from "rehype-raw";
 import { styled } from "@linaria/react";
+import { css } from "@linaria/core";
 import { CodeHighlighter } from "./index";
 import { slugify } from "../utils";
 
 type MarkdownProps = {
   content: string;
 };
+
+const Anchor = styled.a`
+  padding-left: 0.5rem;
+  color: #3794ff;
+  visibility: hidden;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 const StyledImg = styled.img`
   && {
@@ -36,6 +46,13 @@ const StyledParagraph = styled.p`
   & > img {
     display: flex;
     margin: auto;
+  }
+`;
+
+const headerClassName = css`
+  cursor: pointer;
+  &:hover ${Anchor} {
+    visibility: visible;
   }
 `;
 
@@ -81,7 +98,63 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
   },
   h1: (props) => {
     const text = props.children[0];
-    return <h1 {...props} id={slugify(typeof text === "string" ? text : "")} />;
+    const anchorId = slugify(typeof text === "string" ? text : "");
+    return (
+      <h1 {...props} id={anchorId} className={headerClassName}>
+        {text}
+        <Anchor href={`#${anchorId}`}>#</Anchor>
+      </h1>
+    );
+  },
+  h2: (props) => {
+    const text = props.children[0];
+    const anchorId = slugify(typeof text === "string" ? text : "");
+    return (
+      <h2 {...props} id={anchorId} className={headerClassName}>
+        {text}
+        <Anchor href={`#${anchorId}`}>#</Anchor>
+      </h2>
+    );
+  },
+  h3: (props) => {
+    const text = props.children[0];
+    const anchorId = slugify(typeof text === "string" ? text : "");
+    return (
+      <h3 {...props} id={anchorId} className={headerClassName}>
+        {text}
+        <Anchor href={`#${anchorId}`}>#</Anchor>
+      </h3>
+    );
+  },
+  h4: (props) => {
+    const text = props.children[0];
+    const anchorId = slugify(typeof text === "string" ? text : "");
+    return (
+      <h4 {...props} id={anchorId} className={headerClassName}>
+        {text}
+        <Anchor href={`#${anchorId}`}>#</Anchor>
+      </h4>
+    );
+  },
+  h5: (props) => {
+    const text = props.children[0];
+    const anchorId = slugify(typeof text === "string" ? text : "");
+    return (
+      <h5 {...props} id={anchorId} className={headerClassName}>
+        {text}
+        <Anchor href={`#${anchorId}`}>#</Anchor>
+      </h5>
+    );
+  },
+  h6: (props) => {
+    const text = props.children[0];
+    const anchorId = slugify(typeof text === "string" ? text : "");
+    return (
+      <h6 {...props} id={anchorId} className={headerClassName}>
+        {text}
+        <Anchor href={`#${anchorId}`}>#</Anchor>
+      </h6>
+    );
   },
   p: (props) => {
     return <StyledParagraph {...props} />;

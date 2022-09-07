@@ -174,6 +174,16 @@ export const Tabpane = () => {
   const currentTab = useTabsStore((state) => state.currentTab);
   const { onOpenTab, onCloseTab } = useTabpaneActions();
 
+  useEffect(() => {
+    if (!currentTab) return;
+    const scrollElement = document.getElementById(
+      window.location.hash.replace("#", "")
+    );
+    if (scrollElement) {
+      scrollElement.scrollIntoView();
+    }
+  }, [currentTab]);
+
   return (
     <>
       <StyledTabpaneHeaderContainer>
