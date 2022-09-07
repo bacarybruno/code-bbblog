@@ -48,7 +48,7 @@ const Controls = () => (
   </svg>
 );
 
-export const CodeHighlighter = ({
+const CodeHighlighter = ({
   code,
   language,
   className,
@@ -110,3 +110,5 @@ export const CodeHighlighter = ({
     </Wrapper>
   );
 };
+
+export default CodeHighlighter;

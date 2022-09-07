@@ -1,67 +1,24 @@
+import React, { Suspense } from "react";
 import ReactMarkdown from "react-markdown";
 import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react";
 import rehypeRaw from "rehype-raw";
-import { styled } from "@linaria/react";
-import { css } from "@linaria/core";
-import { CodeHighlighter } from "./index";
-import { slugify } from "../utils";
+import {
+  StyledHeader,
+  StyledImg,
+  StyledLi,
+  StyledParagraph,
+  Anchor,
+  headerClassName,
+} from "./styles";
+import { slugify } from "../../utils";
+
+const CodeHighlighter = React.lazy(
+  () => import("../code-highlighter/code-highlighter")
+);
 
 type MarkdownProps = {
   content: string;
 };
-
-const Anchor = styled.a`
-  padding-left: 0.5rem;
-  color: #3794ff;
-  visibility: hidden;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const StyledImg = styled.img`
-  && {
-    max-width: 100%;
-    margin-top: 24px;
-    margin-bottom: 8px;
-  }
-  & + em {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 24px;
-  }
-`;
-
-export const StyledHeader = styled.h1`
-  padding: 5px 0 0;
-  border: none;
-  font-size: 2.7em;
-`;
-
-const StyledParagraph = styled.p`
-  font-size: 1.17rem;
-  & > vscode-link {
-    font-size: unset;
-  }
-  & > img {
-    display: flex;
-    margin: auto;
-  }
-`;
-
-const headerClassName = css`
-  cursor: pointer;
-  &:hover ${Anchor} {
-    visibility: visible;
-  }
-`;
-
-const StyledLi = styled.li`
-  font-size: 1.1rem;
-  & > vscode-link {
-    font-size: unset;
-  }
-`;
 
 const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
   img: (props) => {
@@ -71,12 +28,14 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
     const match = /language-(\w+)/.exec(className || "");
     const language = match ? match[1] : "javascript";
     return (
-      <CodeHighlighter
-        code={String(children)}
-        language={language}
-        inline={inline}
-        className={className}
-      />
+      <Suspense fallback={null}>
+        <CodeHighlighter
+          code={String(children)}
+          language={language}
+          inline={inline}
+          className={className}
+        />
+      </Suspense>
     );
   },
   button: ({ onClick, disabled, children }) => {
@@ -164,10 +123,12 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
   },
 };
 
-export const Markdown = ({ content }: MarkdownProps) => {
+const Markdown = ({ content }: MarkdownProps) => {
   return (
     <ReactMarkdown components={components} rehypePlugins={[rehypeRaw]}>
       {content}
     </ReactMarkdown>
   );
 };
+
+export default Markdown;

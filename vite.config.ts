@@ -1,6 +1,5 @@
 import linaria from "@linaria/rollup";
 import react from "@vitejs/plugin-react";
-import { splitVendorChunkPlugin } from "vite";
 import { defineConfig } from "vite";
 import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
 import rollupNodePolyFill from "rollup-plugin-node-polyfills";
@@ -9,7 +8,7 @@ import rollupNodePolyFill from "rollup-plugin-node-polyfills";
 export default defineConfig({
   build: {
     rollupOptions: {
-      plugins: [rollupNodePolyFill({}), splitVendorChunkPlugin()],
+      plugins: [rollupNodePolyFill({})],
     },
   },
   esbuild: {
