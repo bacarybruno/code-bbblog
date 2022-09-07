@@ -1,8 +1,9 @@
 import "codemirror/mode/javascript/javascript";
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import { EditorConfiguration } from "codemirror";
-import { useRef } from "react";
-import { ControlsWrapper, StyledCode, Wrapper } from "./styles";
+import { useRef, useState } from "react";
+import { ControlsWrapper, StyledCode, Wrapper, ClipboardCopy } from "./styles";
+import { Icon } from "../icon";
 
 type CodeHighlighterProps = {
   code: string;
@@ -55,6 +56,7 @@ export const CodeHighlighter = ({
 }: CodeHighlighterProps) => {
   const editor = useRef<any>();
   const wrapper = useRef<any>();
+  const [showCopySuccess, setShowCopySuccess] = useState(false);
 
   const options: EditorConfiguration = {
     smartIndent: true,
@@ -74,6 +76,14 @@ export const CodeHighlighter = ({
     }
   };
 
+  const copyCodeToClipboard = async () => {
+    await navigator.clipboard.writeText(code);
+    setShowCopySuccess(true);
+    setTimeout(() => {
+      setShowCopySuccess(false);
+    }, 3000);
+  };
+
   if (inline) {
     return <StyledCode className={className}>{code}</StyledCode>;
   }
@@ -82,9 +92,16 @@ export const CodeHighlighter = ({
     <Wrapper>
       <ControlsWrapper>
         <Controls />
+        <ClipboardCopy onClick={copyCodeToClipboard}>
+          <Icon
+            name={showCopySuccess ? "check" : "copy"}
+            title="Copy to clipboard"
+            size="small"
+          />
+        </ClipboardCopy>
       </ControlsWrapper>
       <CodeMirror
-        value={String(code).replace(/\n$/, "")}
+        value={code}
         options={options}
         ref={wrapper}
         editorDidMount={(e) => (editor.current = e)}
