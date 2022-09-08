@@ -15,7 +15,10 @@ import {
   StyledTabpanelTitle,
   TabContainer,
 } from "./styles";
-import { StyledHeader } from "../markdown/styles";
+import {
+  StyledHeader as BlogPostHeader,
+  StyledParagraph,
+} from "../markdown/styles";
 
 const Markdown = React.lazy(() => import("../markdown/markdown"));
 
@@ -171,6 +174,23 @@ const useTabpaneActions = () => {
   };
 };
 
+const BlogPostFooter = () => {
+  return (
+    <div style={{ marginTop: 50 }}>
+      <hr />
+      <StyledParagraph>
+        <em>Love what you are reading ? Give a ⭐️ to show your support ❤️</em>
+      </StyledParagraph>
+      <iframe
+        src="https://ghbtns.com/github-btn.html?user=bacarybruno&repo=code-bbblog&type=star&count=true&v=2"
+        scrolling="0"
+        style={{ margin: "auto", border: 0 }}
+        height={30}
+      />
+    </div>
+  );
+};
+
 export const Tabpane = () => {
   const openedTabs = useTabsStore((state) => state.openedTabs);
   const currentTab = useTabsStore((state) => state.currentTab);
@@ -217,11 +237,12 @@ export const Tabpane = () => {
           {currentTab && (
             <>
               {currentTab.type === "post" && (
-                <StyledHeader>{currentTab.title}</StyledHeader>
+                <BlogPostHeader>{currentTab.title}</BlogPostHeader>
               )}
               <Suspense fallback={null}>
                 <Markdown content={currentTab.body} />
               </Suspense>
+              {currentTab.type === "post" && <BlogPostFooter />}
             </>
           )}
         </StyledTabpaneContent>
