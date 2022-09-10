@@ -1,8 +1,14 @@
 import "codemirror/mode/javascript/javascript";
 import { UnControlled as CodeMirror } from "react-codemirror2";
-import { EditorConfiguration } from "codemirror";
+import { Editor, EditorConfiguration } from "codemirror";
 import { useRef, useState } from "react";
-import { ControlsWrapper, StyledCode, Wrapper, ClipboardCopy } from "./styles";
+import {
+  ControlsWrapper,
+  StyledCode,
+  Wrapper,
+  ClipboardCopy,
+  WindowTitle,
+} from "./styles";
 import { Icon } from "../icon";
 
 type CodeHighlighterProps = {
@@ -48,16 +54,24 @@ const Controls = () => (
   </svg>
 );
 
+const configRegex = /\/\/ meta (.*)/;
+
+type Config =
+  | { markText?: [start: number, end: number][]; fileName?: string }
+  | undefined;
+
 const CodeHighlighter = ({
-  code,
+  code: rawCode,
   language,
   className,
   inline,
 }: CodeHighlighterProps) => {
-  const editor = useRef<any>();
-  const wrapper = useRef<any>();
+  const editor = useRef<Editor | null>(null);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
 
+  const configMatch = configRegex.exec(rawCode);
+  const config: Config = configMatch ? JSON.parse(configMatch[1]) : undefined;
+  const code = rawCode.replace(configRegex, "").trim();
   const options: EditorConfiguration = {
     smartIndent: true,
     mode: language,
@@ -65,15 +79,6 @@ const CodeHighlighter = ({
     viewportMargin: Infinity,
     readOnly: true,
     lineWrapping: true,
-  };
-
-  const editorWillUnmount = () => {
-    if (editor.current) {
-      editor.current.display.wrapper.remove();
-    }
-    if (wrapper.current) {
-      wrapper.current.hydrated = false;
-    }
   };
 
   const copyCodeToClipboard = async () => {
@@ -84,6 +89,24 @@ const CodeHighlighter = ({
     }, 3000);
   };
 
+  const highlightLines = (start: number, end: number) => {
+    const MAX_LINE_LENGTH = 100000;
+    const from = { line: start, ch: 0 };
+    const to = { line: end, ch: MAX_LINE_LENGTH };
+    editor.current?.markText(from, to, {
+      css: `background-color: rgba(255, 255, 255, 0.10);`,
+    });
+  };
+
+  const onEditMount = (event: Editor) => {
+    editor.current = event;
+    if (config && Array.isArray(config.markText)) {
+      config.markText.forEach(([start, end]) => {
+        highlightLines(start - 1, end);
+      });
+    }
+  };
+
   if (inline) {
     return <StyledCode className={className}>{code}</StyledCode>;
   }
@@ -92,6 +115,7 @@ const CodeHighlighter = ({
     <Wrapper>
       <ControlsWrapper>
         <Controls />
+        <WindowTitle>{config?.fileName}</WindowTitle>
         <ClipboardCopy onClick={copyCodeToClipboard}>
           <Icon
             name={showCopySuccess ? "check" : "copy"}
@@ -100,13 +124,7 @@ const CodeHighlighter = ({
           />
         </ClipboardCopy>
       </ControlsWrapper>
-      <CodeMirror
-        value={code}
-        options={options}
-        ref={wrapper}
-        editorDidMount={(e) => (editor.current = e)}
-        editorWillUnmount={editorWillUnmount}
-      />
+      <CodeMirror value={code} options={options} editorDidMount={onEditMount} />
     </Wrapper>
   );
 };
