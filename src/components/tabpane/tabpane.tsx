@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { useLocation, useRoute } from "wouter";
-import { Flexbox, SvgIcon } from "../index";
+import { Flexbox, SvgIcon, MetaTags } from "../index";
 import { PageTab, useTabsStore } from "../../store";
 import { defaultPage, findPage } from "../../pages";
 import { usePost } from "../../hooks";
@@ -191,10 +191,69 @@ const BlogPostFooter = () => {
   );
 };
 
-export const Tabpane = () => {
+const TabpaneContent = () => {
+  const currentTab = useTabsStore((state) => state.currentTab);
+
+  if (!currentTab) return null;
+
+  return (
+    <StyledTabpaneContainer>
+      <StyledTabpaneContent>
+        <>
+          <MetaTags title={currentTab.title} />
+          {currentTab.type === "post" && (
+            <header>
+              <BlogPostHeader>{currentTab.title}</BlogPostHeader>
+            </header>
+          )}
+          <article>
+            <Suspense fallback={null}>
+              <Markdown content={currentTab.body} />
+            </Suspense>
+          </article>
+          {currentTab.type === "post" && (
+            <footer>
+              <BlogPostFooter />
+            </footer>
+          )}
+        </>
+      </StyledTabpaneContent>
+    </StyledTabpaneContainer>
+  );
+};
+
+const TabpaneHeader = () => {
   const openedTabs = useTabsStore((state) => state.openedTabs);
   const currentTab = useTabsStore((state) => state.currentTab);
+
   const { onOpenTab, onCloseTab } = useTabpaneActions();
+
+  return (
+    <StyledTabpaneHeaderContainer>
+      <Flexbox>
+        <TabContainer>
+          {openedTabs.map((tab) => (
+            <TabpanelHeader
+              title={tab.title}
+              icon={tab.icon}
+              key={tab.slug}
+              type={tab.type === "page" ? "codicon" : "seticon"}
+              onClick={() =>
+                onOpenTab(tab.type === "post" ? `/posts/${tab.slug}` : tab.slug)
+              }
+              onClose={() => onCloseTab(tab.slug)}
+              active={currentTab?.slug.toLowerCase() === tab.slug.toLowerCase()}
+            />
+          ))}
+        </TabContainer>
+        <EditButton />
+      </Flexbox>
+    </StyledTabpaneHeaderContainer>
+  );
+};
+
+export const Tabpane = () => {
+  const currentTab = useTabsStore((state) => state.currentTab);
 
   useEffect(() => {
     if (!currentTab) return;
@@ -208,45 +267,8 @@ export const Tabpane = () => {
 
   return (
     <>
-      <StyledTabpaneHeaderContainer>
-        <Flexbox>
-          <TabContainer>
-            {openedTabs.map((tab) => (
-              <TabpanelHeader
-                title={tab.title}
-                icon={tab.icon}
-                key={tab.slug}
-                type={tab.type === "page" ? "codicon" : "seticon"}
-                onClick={() =>
-                  onOpenTab(
-                    tab.type === "post" ? `/posts/${tab.slug}` : tab.slug
-                  )
-                }
-                onClose={() => onCloseTab(tab.slug)}
-                active={
-                  currentTab?.slug.toLowerCase() === tab.slug.toLowerCase()
-                }
-              />
-            ))}
-          </TabContainer>
-          <EditButton />
-        </Flexbox>
-      </StyledTabpaneHeaderContainer>
-      <StyledTabpaneContainer>
-        <StyledTabpaneContent>
-          {currentTab && (
-            <>
-              {currentTab.type === "post" && (
-                <BlogPostHeader>{currentTab.title}</BlogPostHeader>
-              )}
-              <Suspense fallback={null}>
-                <Markdown content={currentTab.body} />
-              </Suspense>
-              {currentTab.type === "post" && <BlogPostFooter />}
-            </>
-          )}
-        </StyledTabpaneContent>
-      </StyledTabpaneContainer>
+      <TabpaneHeader />
+      <TabpaneContent />
     </>
   );
 };
