@@ -7,6 +7,7 @@ export interface PageTab {
   slug: string;
   body: string;
   icon: string;
+  [key: string]: unknown;
 }
 
 interface TabsStoreState {

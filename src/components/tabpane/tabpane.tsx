@@ -1,10 +1,13 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { useLocation, useRoute } from "wouter";
+// @ts-ignore
+import readingTime from "reading-time/lib/reading-time";
 import { Flexbox, SvgIcon, MetaTags } from "../index";
 import { PageTab, useTabsStore } from "../../store";
 import { defaultPage, findPage } from "../../pages";
 import { usePost } from "../../hooks";
 import {
+  BlogPostAvatar,
   StyledCodicon,
   StyledTabpaneContainer,
   StyledTabpaneContent,
@@ -14,11 +17,10 @@ import {
   StyledTabpanelIcon,
   StyledTabpanelTitle,
   TabContainer,
+  BlogPostTitle,
+  BlogPostHeader,
 } from "./styles";
-import {
-  StyledHeader as BlogPostHeader,
-  StyledParagraph,
-} from "../markdown/styles";
+import { StyledParagraph } from "../markdown/styles";
 
 const Markdown = React.lazy(() => import("../markdown/markdown"));
 
@@ -193,8 +195,18 @@ const BlogPostFooter = () => {
 
 const TabpaneContent = () => {
   const currentTab = useTabsStore((state) => state.currentTab);
-
   if (!currentTab) return null;
+
+  let publishedAt = null;
+  let readTime = null;
+  if (currentTab.type === "post") {
+    publishedAt = new Intl.DateTimeFormat("en-US", {
+      dateStyle: "long",
+    }).format(
+      new Date((currentTab.sys as { publishedAt: string }).publishedAt)
+    );
+    readTime = readingTime(currentTab.body).text;
+  }
 
   return (
     <StyledTabpaneContainer>
@@ -202,9 +214,18 @@ const TabpaneContent = () => {
         <>
           <MetaTags title={currentTab.title} />
           {currentTab.type === "post" && (
-            <header>
-              <BlogPostHeader>{currentTab.title}</BlogPostHeader>
-            </header>
+            <BlogPostHeader>
+              <BlogPostTitle>{currentTab.title}</BlogPostTitle>
+              <Flexbox>
+                <BlogPostAvatar
+                  src="https://avatars.githubusercontent.com/u/14147533?s=96&v=4"
+                  sizes="20vw"
+                  width="24"
+                  height="24"
+                />
+                <span>{`Bruno Bodian / ${publishedAt} • ${readTime}`}</span>
+              </Flexbox>
+            </BlogPostHeader>
           )}
           <article>
             <Suspense fallback={null}>

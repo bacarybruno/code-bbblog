@@ -1,5 +1,6 @@
 import { styled } from "@linaria/react";
 import { Container, Icon } from "../index";
+import { StyledHeader } from "../markdown/styles";
 
 export const StyledTabpanelIcon = styled(Icon)<{ active?: boolean }>`
   padding: 2px;
@@ -110,4 +111,18 @@ export const TabContainer = styled(Container)`
   &::-webkit-scrollbar-thumb:active {
     background: rgba(191, 191, 191, 0.4);
   }
+`;
+
+export const BlogPostAvatar = styled.img`
+  border-radius: 9999px;
+  margin-right: 8px;
+`;
+
+export const BlogPostTitle = styled(StyledHeader)`
+  padding: 0px;
+  margin-bottom: 8px;
+`;
+
+export const BlogPostHeader = styled.div`
+  margin-bottom: 36px;
 `;

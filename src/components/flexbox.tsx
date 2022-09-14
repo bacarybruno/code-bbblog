@@ -6,6 +6,7 @@ type FlexboxProps = {
   flexDirection?: React.CSSProperties['flexDirection'];
   justifyContent?: React.CSSProperties['justifyContent'];
   alignItems?: React.CSSProperties['alignItems'];
+  flex?: React.CSSProperties['flex'];
 };
 
 const StyledFlexbox = styled.div`
