@@ -1,14 +1,24 @@
-import { Activitybar, Content, Flexbox, Layout, Sidebar } from "./components";
+import {
+  Activitybar,
+  Content,
+  Flexbox,
+  Layout,
+  Sidebar,
+  MetaTags,
+} from "./components";
 
 const Home = () => {
   return (
-    <Layout>
-      <Flexbox>
-        <Activitybar />
-        <Sidebar />
-        <Content />
-      </Flexbox>
-    </Layout>
+    <>
+      <MetaTags />
+      <Layout>
+        <Flexbox>
+          <Activitybar />
+          <Sidebar />
+          <Content />
+        </Flexbox>
+      </Layout>
+    </>
   );
 };
 
