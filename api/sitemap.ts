@@ -50,9 +50,11 @@ export default async (_request: VercelRequest, response: VercelResponse) => {
   const dynamicPages = await getDynamicPages();
   let pages = staticPages;
   if (dynamicPages) {
+    console.log("Got", dynamicPages.length, "blog posts");
     pages = pages.concat(dynamicPages);
   }
 
+  console.log("Got", pages, "pages in total");
   const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${pages.map((path) => `<url>
     <loc>https://bacarybruno.com${path}</loc>
