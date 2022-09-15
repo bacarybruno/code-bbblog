@@ -42,7 +42,7 @@ const getDynamicPages = async () => {
     console.log("Successfully sent API request");
     return result.blogPostCollection.items.map((item) => `/posts/${item.slug}`);
   } catch (error) {
-    console.error("An error occured while trying to get posts:", error.message);
+    console.error("An error occured while trying to get posts:", (error as Error).message);
   }
 };
 
