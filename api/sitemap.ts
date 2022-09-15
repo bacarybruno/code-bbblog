@@ -1,4 +1,5 @@
 import { request, gql } from "graphql-request";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 const staticPages = ["/", "/home", "/about", "/blog", "/projects"];
 
@@ -45,7 +46,7 @@ const getDynamicPages = async () => {
   }
 };
 
-export default async (_request, response) => {
+export default async (_request: VercelRequest, response: VercelResponse) => {
   const dynamicPages = await getDynamicPages();
   let pages = staticPages;
   if (dynamicPages) {
@@ -60,5 +61,5 @@ export default async (_request, response) => {
   </url>`).join("\n\t")}
 </urlset>`;
 
-  response.status(200).send(sitemap);
+  return response.status(200).send(sitemap);
 };
