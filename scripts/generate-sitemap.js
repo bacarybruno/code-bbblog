@@ -1,7 +1,7 @@
 import fs from "fs";
 import { request, gql } from "graphql-request";
 
-const pages = ["/", "/home", "/about", "/blog", "/projects"];
+let pages = ["/", "/home", "/about", "/blog", "/projects"];
 
 try {
   console.log("Going to fetch blog posts slug");
