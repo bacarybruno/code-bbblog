@@ -18,6 +18,7 @@ export const MetaTags = ({
       {/* Primary Meta Tags */}
       <title>{title}</title>
       <meta name="title" content={title} />
+      <link rel="canonical" href={websiteUrl} />
       {description && <meta name="description" content={description} />}
 
       {/* Open Graph / Facebook */}

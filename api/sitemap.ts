@@ -1,7 +1,7 @@
 import { request, gql } from "graphql-request";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-const staticPages = ["/", "/home", "/about", "/blog", "/projects"];
+const staticPages = ["", "/home", "/about", "/blog", "/projects"];
 
 type BlogPostCollection = {
   blogPostCollection: { items: { slug: string }[] };
@@ -55,13 +55,17 @@ export default async (_request: VercelRequest, response: VercelResponse) => {
   }
 
   console.log("Got", pages, "pages in total");
-  const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${pages.map((path) => `<url>
-    <loc>https://bacarybruno.com${path}</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>`).join("\n\t")}
-</urlset>`;
+  const sitemap = `
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    ${pages.map((path) => `
+      <url>
+        <loc>https://bacarybruno.com${path}</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.7</priority>
+      </url>
+    `).join("\n\t")}
+  </urlset>
+`;
 
   return response
     .status(200)
