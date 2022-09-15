@@ -155,7 +155,7 @@ const useTabpaneActions = () => {
     }
 
     if (!page) {
-      return setLocation("/home");
+      return setLocation("/");
     }
 
     const newTab: PageTab = {
