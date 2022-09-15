@@ -61,5 +61,8 @@ export default async (_request: VercelRequest, response: VercelResponse) => {
   </url>`).join("\n\t")}
 </urlset>`;
 
-  return response.status(200).send(sitemap);
+  return response
+    .status(200)
+    .setHeader("Content-Type", "application/xml")
+    .send(sitemap);
 };
