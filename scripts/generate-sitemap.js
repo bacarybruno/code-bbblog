@@ -1,4 +1,5 @@
 import fs from "fs";
+import { fileURLToPath } from "url";
 import { request, gql } from "graphql-request";
 
 let pages = ["/", "/home", "/about", "/blog", "/projects"];
@@ -39,7 +40,7 @@ try {
 
   console.log("Successfully get blog posts slug");
 } catch (error) {
-  console.error('An error occured while trying to get posts:', error.message);
+  console.error("An error occured while trying to get posts:", error.message);
 }
 
 console.log("Going to generate sitemap.xml with", pages.length, "entries");
@@ -52,5 +53,6 @@ const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   </url>`).join("\n\t")}
 </urlset>`;
 
-fs.writeFileSync("./public/sitemap.xml", sitemap);
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+fs.writeFileSync(`${__dirname}../public/sitemap.xml`, sitemap);
 console.log("Successfully generated sitemap.xml file");
