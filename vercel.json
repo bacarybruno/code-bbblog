@@ -1,6 +1,10 @@
 {
   "rewrites": [
-    { "source": "/((?!sitemap.xml).*)", "destination": "/" },
-    { "source": "/sitemap.xml", "destination": "/api/sitemap.ts" }
+    { "source": "/((?!sitemap.xml).*)", "destination": "/", "statusCode": 301 },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap.ts",
+      "statusCode": 301
+    }
   ]
 }

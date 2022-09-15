@@ -58,8 +58,8 @@ export const Activitybar = () => {
           <MenuAction
             iconName="home"
             title="Home"
-            onClick={() => setLocation("/home")}
-            active={currentTab?.slug.toLowerCase() === "/home"}
+            onClick={() => setLocation("/")}
+            active={currentTab?.slug.toLowerCase() === "/"}
           />
           <MenuAction iconName="search" title="Search" onClick={() => null} />
           <MenuAction

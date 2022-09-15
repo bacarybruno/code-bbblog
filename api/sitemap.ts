@@ -1,7 +1,7 @@
 import { request, gql } from "graphql-request";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-const staticPages = ["", "/home", "/about", "/blog", "/projects"];
+const staticPages = ["", "/about", "/blog", "/projects"];
 
 type BlogPostCollection = {
   blogPostCollection: { items: { slug: string }[] };

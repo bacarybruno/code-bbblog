@@ -15,7 +15,7 @@ const contents = [
   {
     title: "Home",
     icon: "home",
-    slug: "/home",
+    slug: "/",
     body: homePage,
   },
   {
