@@ -144,8 +144,14 @@ const useTabpaneActions = () => {
         (openedTab) => openedTab.slug.toLowerCase() !== tabSlug.toLowerCase()
       );
       const newFocusedTab = otherTabs[otherTabs.length - 1] || null;
+      if (!newFocusedTab) return;
+
       focusTab(newFocusedTab);
-      setLocation(newFocusedTab?.slug ?? defaultPage.slug);
+      setLocation(
+        newFocusedTab.type === "post"
+          ? `/posts/${newFocusedTab.slug}`
+          : newFocusedTab.slug
+      );
     }
   };
 
