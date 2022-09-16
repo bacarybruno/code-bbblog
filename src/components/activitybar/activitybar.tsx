@@ -1,12 +1,7 @@
 import { useLocation } from "wouter";
 import { Flexbox, Icon } from "../index";
 import { useLayoutStore, useTabsStore } from "../../store";
-import {
-  StyledActivitybar,
-  StyledMenuAction,
-  StyledMenuActionIcon,
-  StyledMenubarButton,
-} from "./styles";
+import * as SC from "./styles";
 
 type MenubarProps = {
   onClick: (event: React.SyntheticEvent) => void;
@@ -14,9 +9,9 @@ type MenubarProps = {
 
 const Menubar = ({ onClick }: MenubarProps) => {
   return (
-    <StyledMenubarButton role="button" onClick={onClick}>
+    <SC.MenubarButton role="button" onClick={onClick}>
       <Icon name="menu" title="Menu" />
-    </StyledMenubarButton>
+    </SC.MenubarButton>
   );
 };
 
@@ -29,19 +24,19 @@ type MenuActionProps = {
 
 const MenuAction = ({ iconName, title, onClick, active }: MenuActionProps) => {
   return (
-    <StyledMenuAction
+    <SC.MenuAction
       role="button"
       title={title}
       onClick={onClick}
       active={active}
     >
-      <StyledMenuActionIcon
+      <SC.MenuActionIcon
         name={iconName}
         size="medium"
         title={title}
         active={active}
       />
-    </StyledMenuAction>
+    </SC.MenuAction>
   );
 };
 
@@ -51,7 +46,7 @@ export const Activitybar = () => {
   const toggleSidebar = useLayoutStore((state) => state.toggleSidebar);
 
   return (
-    <StyledActivitybar>
+    <SC.Activitybar>
       <Flexbox flexDirection="column" justifyContent="space-between">
         <div>
           <Menubar onClick={toggleSidebar} />
@@ -94,6 +89,6 @@ export const Activitybar = () => {
           />
         </div>
       </Flexbox>
-    </StyledActivitybar>
+    </SC.Activitybar>
   );
 };

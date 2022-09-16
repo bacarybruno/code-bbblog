@@ -17,7 +17,7 @@ export const WindowTitle = styled.span`
   font-size: 1rem;
 `;
 
-export const StyledCode = styled.span`
+export const Code = styled.span`
   color: #d7ba7d;
   font-family: "Fira Code", monospace;
   font-size: 1rem;

@@ -1,5 +1,5 @@
 import { Flexbox } from "./flexbox";
-import { Footer } from "./footer";
+import { Footer } from "./footer/footer";
 import { Container } from "./container";
 
 type LayoutProps = {

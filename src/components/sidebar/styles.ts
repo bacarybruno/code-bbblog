@@ -1,8 +1,8 @@
 import { styled } from "@linaria/react";
 import { Container } from "../container";
-import { Icon, SvgIcon } from "../icon";
+import { Icon as BaseIcon, SvgIcon } from "../icon";
 
-export const StyledSidebar = styled.nav`
+export const Sidebar = styled.nav`
   width: 300px;
   flex: none;
   background-color: rgb(37, 37, 38);
@@ -33,13 +33,13 @@ export const SidebarTitle = styled.div`
   }
 `;
 
-export const StyledBorder = styled.div`
+export const Border = styled.div`
   width: 100%;
   height: 1px;
   background-color: rgba(204, 204, 204, 0.2);
 `;
 
-export const StyledH3 = styled.h3`
+export const H3 = styled.h3`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -60,7 +60,7 @@ export const SidebarPanel = styled.div<{ noBorder?: boolean }>`
   }
 `;
 
-export const PanelIcon = styled(Icon)`
+export const PanelIcon = styled(BaseIcon)`
   color: #c5c5c5;
 `;
 
@@ -78,7 +78,7 @@ export const ListItem = styled.li<{ active?: boolean }>`
   }
 `;
 
-export const StyledIcon = styled(SvgIcon)`
+export const Icon = styled(SvgIcon)`
   margin-right: 6px;
   color: #c5c5c5;
 `;

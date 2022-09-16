@@ -2,14 +2,7 @@ import React, { Suspense } from "react";
 import ReactMarkdown from "react-markdown";
 import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react";
 import rehypeRaw from "rehype-raw";
-import {
-  StyledHeader,
-  StyledImg,
-  StyledLi,
-  StyledParagraph,
-  Anchor,
-  headerClassName,
-} from "./styles";
+import * as SC from "./styles";
 import { slugify } from "../../utils/slugify";
 
 const CodeHighlighter = React.lazy(
@@ -22,7 +15,7 @@ type MarkdownProps = {
 
 const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
   img: (props) => {
-    return <StyledImg {...props} referrerPolicy="no-referrer" />;
+    return <SC.Img {...props} referrerPolicy="no-referrer" />;
   },
   code: ({ inline, className, children }) => {
     const match = /language-(\w+)/.exec(className || "");
@@ -53,15 +46,15 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
     );
   },
   header: (props) => {
-    return <StyledHeader {...props} />;
+    return <SC.Header {...props} />;
   },
   h1: (props) => {
     const text = props.children[0];
     const anchorId = slugify(typeof text === "string" ? text : "");
     return (
-      <h1 {...props} id={anchorId} className={headerClassName}>
+      <h1 {...props} id={anchorId} className={SC.headerClassName}>
         {text}
-        <Anchor href={`#${anchorId}`}>#</Anchor>
+        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
       </h1>
     );
   },
@@ -69,9 +62,9 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
     const text = props.children[0];
     const anchorId = slugify(typeof text === "string" ? text : "");
     return (
-      <h2 {...props} id={anchorId} className={headerClassName}>
+      <h2 {...props} id={anchorId} className={SC.headerClassName}>
         {text}
-        <Anchor href={`#${anchorId}`}>#</Anchor>
+        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
       </h2>
     );
   },
@@ -79,9 +72,9 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
     const text = props.children[0];
     const anchorId = slugify(typeof text === "string" ? text : "");
     return (
-      <h3 {...props} id={anchorId} className={headerClassName}>
+      <h3 {...props} id={anchorId} className={SC.headerClassName}>
         {text}
-        <Anchor href={`#${anchorId}`}>#</Anchor>
+        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
       </h3>
     );
   },
@@ -89,9 +82,9 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
     const text = props.children[0];
     const anchorId = slugify(typeof text === "string" ? text : "");
     return (
-      <h4 {...props} id={anchorId} className={headerClassName}>
+      <h4 {...props} id={anchorId} className={SC.headerClassName}>
         {text}
-        <Anchor href={`#${anchorId}`}>#</Anchor>
+        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
       </h4>
     );
   },
@@ -99,9 +92,9 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
     const text = props.children[0];
     const anchorId = slugify(typeof text === "string" ? text : "");
     return (
-      <h5 {...props} id={anchorId} className={headerClassName}>
+      <h5 {...props} id={anchorId} className={SC.headerClassName}>
         {text}
-        <Anchor href={`#${anchorId}`}>#</Anchor>
+        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
       </h5>
     );
   },
@@ -109,17 +102,17 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
     const text = props.children[0];
     const anchorId = slugify(typeof text === "string" ? text : "");
     return (
-      <h6 {...props} id={anchorId} className={headerClassName}>
+      <h6 {...props} id={anchorId} className={SC.headerClassName}>
         {text}
-        <Anchor href={`#${anchorId}`}>#</Anchor>
+        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
       </h6>
     );
   },
   p: (props) => {
-    return <StyledParagraph {...props} />;
+    return <SC.Paragraph {...props} />;
   },
   li: (props) => {
-    return <StyledLi {...props} />;
+    return <SC.Li {...props} />;
   },
 };
 
