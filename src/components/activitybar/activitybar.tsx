@@ -80,7 +80,7 @@ export const Activitybar = () => {
           <MenuAction
             iconName="github"
             title="View this on GitHub"
-            onClick={() => null}
+            onClick={() => window.open("https://github.com/bacarybruno/code-bbblog", "_blank")}
           />
           <MenuAction
             iconName="settings-gear"
