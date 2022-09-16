@@ -7,4 +7,4 @@ export { Flexbox } from "./flexbox";
 export { Footer } from "./footer";
 export { Icon, SvgIcon } from "./icon";
 export { Layout } from "./layout";
-export { MetaTags } from "./meta-tags";
+export { Seo } from "./seo";

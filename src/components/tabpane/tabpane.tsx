@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { useLocation, useRoute } from "wouter";
 // @ts-ignore
 import readingTime from "reading-time/lib/reading-time";
-import { Flexbox, SvgIcon, MetaTags } from "../index";
+import { Flexbox, SvgIcon, Seo } from "../index";
 import { PageTab, useTabsStore } from "../../store";
 import { defaultPage, findPage } from "../../pages";
 import { usePost } from "../../hooks";
@@ -212,7 +212,7 @@ const TabpaneContent = () => {
     <StyledTabpaneContainer>
       <StyledTabpaneContent>
         <>
-          <MetaTags title={currentTab.title} />
+          <Seo title={currentTab.title} />
           {currentTab.type === "post" && (
             <BlogPostHeader>
               <BlogPostTitle>{currentTab.title}</BlogPostTitle>
