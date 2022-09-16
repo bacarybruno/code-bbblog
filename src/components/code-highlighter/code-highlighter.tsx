@@ -2,13 +2,7 @@ import "codemirror/mode/javascript/javascript";
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import { Editor, EditorConfiguration } from "codemirror";
 import { useRef, useState } from "react";
-import {
-  ControlsWrapper,
-  StyledCode,
-  Wrapper,
-  ClipboardCopy,
-  WindowTitle,
-} from "./styles";
+import * as SC from "./styles";
 import { Icon } from "../icon";
 
 type CodeHighlighterProps = {
@@ -108,24 +102,24 @@ const CodeHighlighter = ({
   };
 
   if (inline) {
-    return <StyledCode className={className}>{code}</StyledCode>;
+    return <SC.Code className={className}>{code}</SC.Code>;
   }
 
   return (
-    <Wrapper>
-      <ControlsWrapper>
+    <SC.Wrapper>
+      <SC.ControlsWrapper>
         <Controls />
-        <WindowTitle>{config?.fileName}</WindowTitle>
-        <ClipboardCopy onClick={copyCodeToClipboard}>
+        <SC.WindowTitle>{config?.fileName}</SC.WindowTitle>
+        <SC.ClipboardCopy onClick={copyCodeToClipboard}>
           <Icon
             name={showCopySuccess ? "check" : "copy"}
             title="Copy to clipboard"
             size="small"
           />
-        </ClipboardCopy>
-      </ControlsWrapper>
+        </SC.ClipboardCopy>
+      </SC.ControlsWrapper>
       <CodeMirror value={code} options={options} editorDidMount={onEditMount} />
-    </Wrapper>
+    </SC.Wrapper>
   );
 };
 

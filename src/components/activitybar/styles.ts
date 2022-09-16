@@ -1,7 +1,7 @@
 import { styled } from "@linaria/react";
 import { Icon } from "../icon";
 
-export const StyledMenubarButton = styled.div`
+export const MenubarButton = styled.div`
   width: 100%;
   height: 35px;
   color: rgba(255, 255, 255, 0.4);
@@ -15,7 +15,7 @@ export const StyledMenubarButton = styled.div`
   }
 `;
 
-export const StyledMenuAction = styled.div<{ active?: boolean }>`
+export const MenuAction = styled.div<{ active?: boolean }>`
   height: 48px;
   display: flex;
   flex: none;
@@ -29,12 +29,12 @@ export const StyledMenuAction = styled.div<{ active?: boolean }>`
     ${(props) => (props.active ? "rgb(255,255,255)" : "unset")};
 `;
 
-export const StyledMenuActionIcon = styled(Icon)<{ active?: boolean }>`
+export const MenuActionIcon = styled(Icon)<{ active?: boolean }>`
   color: ${(props) =>
     props.active ? "rgb(255,255,255)" : "rgba(255,255,255,0.4)"};
 `;
 
-export const StyledActivitybar = styled.div`
+export const Activitybar = styled.div`
   background-color: rgb(51, 51, 51);
   width: 48px;
   flex: none;

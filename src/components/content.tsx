@@ -1,10 +1,10 @@
 import { styled } from "@linaria/react";
 import { useLayoutStore } from "../store";
-import { StyledContainer } from "./container";
+import { Container } from "./container";
 import { Flexbox } from "./flexbox";
 import { Tabpane } from "./tabpane/tabpane";
 
-const StyledContent = styled(StyledContainer)`
+const Wrapper = styled(Container)<{ showSidebar: boolean }>`
   background-color: rgb(30, 30, 30);
   position: absolute;
   left: ${props => props.showSidebar ? 348 : 48}px;
@@ -20,10 +20,10 @@ const StyledContent = styled(StyledContainer)`
 export const Content = () => {
   const showSidebar = useLayoutStore((state) => state.showSidebar);
   return (
-    <StyledContent showSidebar={showSidebar}>
+    <Wrapper showSidebar={showSidebar}>
       <Flexbox flexDirection="column">
         <Tabpane />
       </Flexbox>
-    </StyledContent>
+    </Wrapper>
   );
 };

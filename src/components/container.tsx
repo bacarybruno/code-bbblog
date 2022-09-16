@@ -6,15 +6,15 @@ type ContainerProps = {
   children: React.ReactNode;
 };
 
-export const StyledContainer = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex: auto;
 `;
 
 export const Container = ({ children, className, style }: ContainerProps) => {
   return (
-    <StyledContainer className={className} style={style}>
+    <Wrapper className={className} style={style}>
       {children}
-    </StyledContainer>
+    </Wrapper>
   );
 };

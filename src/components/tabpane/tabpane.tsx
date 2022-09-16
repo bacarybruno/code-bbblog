@@ -6,21 +6,7 @@ import { Flexbox, SvgIcon, Seo } from "../index";
 import { PageTab, useTabsStore } from "../../store";
 import { defaultPage, findPage } from "../../pages";
 import { usePost } from "../../hooks";
-import {
-  BlogPostAvatar,
-  StyledCodicon,
-  StyledTabpaneContainer,
-  StyledTabpaneContent,
-  StyledTabpaneHeaderContainer,
-  StyledTabpanelAction,
-  StyledTabpanelHeader,
-  StyledTabpanelIcon,
-  StyledTabpanelTitle,
-  TabContainer,
-  BlogPostTitle,
-  BlogPostHeader,
-} from "./styles";
-import { StyledParagraph } from "../markdown/styles";
+import * as SC from "./styles";
 
 const Markdown = React.lazy(() => import("../markdown/markdown"));
 
@@ -33,7 +19,7 @@ type TabpanelIconProps = {
 
 const TabpanelIcon = ({ active, name, title, onClick }: TabpanelIconProps) => {
   return (
-    <StyledTabpanelIcon
+    <SC.TabpanelIcon
       name={name}
       title={title}
       active={active}
@@ -67,17 +53,17 @@ const TabpanelHeader = ({
   };
 
   return (
-    <StyledTabpanelHeader
+    <SC.TabpanelHeader
       active={active}
       onMouseOver={() => setShowCloseIcon(true)}
       onMouseLeave={() => setShowCloseIcon(false)}
       title={title}
       onClick={onClick}
     >
-      {type === "codicon" && <StyledCodicon name={icon} title={title} />}
+      {type === "codicon" && <SC.Codicon name={icon} title={title} />}
       {type === "seticon" && <SvgIcon name={icon} title={title} />}
-      <StyledTabpanelTitle>{title}</StyledTabpanelTitle>
-      <StyledTabpanelAction>
+      <SC.TabpanelTitle>{title}</SC.TabpanelTitle>
+      <SC.TabpanelAction>
         {showCloseIcon && (
           <TabpanelIcon
             name="close"
@@ -86,21 +72,21 @@ const TabpanelHeader = ({
             onClick={onCloseTab}
           />
         )}
-      </StyledTabpanelAction>
-    </StyledTabpanelHeader>
+      </SC.TabpanelAction>
+    </SC.TabpanelHeader>
   );
 };
 
 const EditButton = () => {
   return (
-    <StyledTabpanelAction>
+    <SC.TabpanelAction>
       <TabpanelIcon
         name="edit"
         active
         title="Suggest a modification"
         onClick={() => {}}
       />
-    </StyledTabpanelAction>
+    </SC.TabpanelAction>
   );
 };
 
@@ -186,9 +172,9 @@ const BlogPostFooter = () => {
   return (
     <div style={{ marginTop: 50 }}>
       <hr />
-      <StyledParagraph>
+      <SC.Paragraph>
         <em>Love what you are reading ? Give a ⭐️ to show your support ❤️</em>
-      </StyledParagraph>
+      </SC.Paragraph>
       <iframe
         src="https://ghbtns.com/github-btn.html?user=bacarybruno&repo=code-bbblog&type=star&count=true&v=2"
         scrolling="0"
@@ -215,15 +201,15 @@ const TabpaneContent = () => {
   }
 
   return (
-    <StyledTabpaneContainer>
-      <StyledTabpaneContent>
+    <SC.TabpaneContainer>
+      <SC.TabpaneContent>
         <>
           <Seo title={currentTab.title} />
           {currentTab.type === "post" && (
-            <BlogPostHeader>
-              <BlogPostTitle>{currentTab.title}</BlogPostTitle>
+            <SC.BlogPostHeader>
+              <SC.BlogPostTitle>{currentTab.title}</SC.BlogPostTitle>
               <Flexbox>
-                <BlogPostAvatar
+                <SC.BlogPostAvatar
                   src="https://avatars.githubusercontent.com/u/14147533?s=96&v=4"
                   sizes="20vw"
                   width="24"
@@ -231,7 +217,7 @@ const TabpaneContent = () => {
                 />
                 <span>{`Bruno Bodian / ${publishedAt} • ${readTime}`}</span>
               </Flexbox>
-            </BlogPostHeader>
+            </SC.BlogPostHeader>
           )}
           <article>
             <Suspense fallback={null}>
@@ -244,8 +230,8 @@ const TabpaneContent = () => {
             </footer>
           )}
         </>
-      </StyledTabpaneContent>
-    </StyledTabpaneContainer>
+      </SC.TabpaneContent>
+    </SC.TabpaneContainer>
   );
 };
 
@@ -256,9 +242,9 @@ const TabpaneHeader = () => {
   const { onOpenTab, onCloseTab } = useTabpaneActions();
 
   return (
-    <StyledTabpaneHeaderContainer>
+    <SC.TabpaneHeaderContainer>
       <Flexbox>
-        <TabContainer>
+        <SC.TabContainer>
           {openedTabs.map((tab) => (
             <TabpanelHeader
               title={tab.title}
@@ -272,10 +258,10 @@ const TabpaneHeader = () => {
               active={currentTab?.slug.toLowerCase() === tab.slug.toLowerCase()}
             />
           ))}
-        </TabContainer>
+        </SC.TabContainer>
         <EditButton />
       </Flexbox>
-    </StyledTabpaneHeaderContainer>
+    </SC.TabpaneHeaderContainer>
   );
 };
 

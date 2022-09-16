@@ -2,16 +2,7 @@ import { useLocation } from "wouter";
 import { useState } from "react";
 import { useTabsStore } from "../../store";
 import { usePosts } from "../../hooks";
-import {
-  ListItem,
-  PanelIcon,
-  PostsContainer,
-  SidebarPanel,
-  SidebarTitle,
-  StyledH3,
-  StyledIcon,
-  StyledSidebar,
-} from "./styles";
+import * as SC from "./styles";
 
 export const Sidebar = () => {
   const [_, setLocation] = useLocation();
@@ -20,22 +11,22 @@ export const Sidebar = () => {
   const { data: posts } = usePosts();
 
   return (
-    <StyledSidebar>
-      <SidebarTitle>
+    <SC.Sidebar>
+      <SC.SidebarTitle>
         <h2>Website content</h2>
-      </SidebarTitle>
+      </SC.SidebarTitle>
       <>
-        <SidebarPanel onClick={() => setShowArticles(!showArticles)}>
-          <PanelIcon
+        <SC.SidebarPanel onClick={() => setShowArticles(!showArticles)}>
+          <SC.PanelIcon
             name={showArticles ? "chevron-down" : "chevron-right"}
             title=""
           />
-          <StyledH3>Articles</StyledH3>
-        </SidebarPanel>
+          <SC.H3>Articles</SC.H3>
+        </SC.SidebarPanel>
         {showArticles && posts && (
-          <PostsContainer>
+          <SC.PostsContainer>
             {posts.map((post) => (
-              <ListItem
+              <SC.ListItem
                 key={post.slug}
                 title={post.title}
                 onClick={() => setLocation(`/posts/${post.slug}`)}
@@ -43,13 +34,13 @@ export const Sidebar = () => {
                   currentTab?.slug.toLowerCase() === post.slug.toLowerCase()
                 }
               >
-                <StyledIcon name={post.icon} title={post.title} />
+                <SC.Icon name={post.icon} title={post.title} />
                 <span>{post.title}</span>
-              </ListItem>
+              </SC.ListItem>
             ))}
-          </PostsContainer>
+          </SC.PostsContainer>
         )}
       </>
-    </StyledSidebar>
+    </SC.Sidebar>
   );
 };

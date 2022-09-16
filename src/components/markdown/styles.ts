@@ -10,7 +10,7 @@ export const Anchor = styled.a`
   }
 `;
 
-export const StyledImg = styled.img`
+export const Img = styled.img`
   && {
     max-width: 100%;
     margin-top: 24px;
@@ -23,13 +23,13 @@ export const StyledImg = styled.img`
   }
 `;
 
-export const StyledHeader = styled.h1`
+export const Header = styled.h1`
   padding: 5px 0 0;
   border: none;
   font-size: 2.7em;
 `;
 
-export const StyledParagraph = styled.p`
+export const Paragraph = styled.p`
   font-size: 1.17rem;
   & > vscode-link {
     font-size: unset;
@@ -47,7 +47,7 @@ export const headerClassName = css`
   }
 `;
 
-export const StyledLi = styled.li`
+export const Li = styled.li`
   font-size: 1.1rem;
   & > vscode-link {
     font-size: unset;

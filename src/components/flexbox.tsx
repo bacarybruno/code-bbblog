@@ -9,12 +9,12 @@ type FlexboxProps = {
   flex?: React.CSSProperties['flex'];
 };
 
-const StyledFlexbox = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex: 100%;
   height: 100%;
 `;
 
 export const Flexbox = ({ children, className, ...style }: FlexboxProps) => {
-  return <StyledFlexbox style={style} className={className}>{children}</StyledFlexbox>;
+  return <Wrapper style={style} className={className}>{children}</Wrapper>;
 };
