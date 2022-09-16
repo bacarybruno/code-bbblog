@@ -10,7 +10,7 @@ import {
   Anchor,
   headerClassName,
 } from "./styles";
-import { slugify } from "../../utils";
+import { slugify } from "../../utils/slugify";
 
 const CodeHighlighter = React.lazy(
   () => import("../code-highlighter/code-highlighter")

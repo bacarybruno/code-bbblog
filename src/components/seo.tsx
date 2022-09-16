@@ -1,18 +1,18 @@
 import { Helmet } from "react-helmet";
 
-type MetaTagsProps = {
+type SeoProps = {
   title?: string;
   description?: string;
   imageUrl?: string;
   websiteUrl?: string;
 };
 
-export const MetaTags = ({
+export const Seo = ({
   title = "Code-BBBlog",
   websiteUrl = window.location.origin,
   description,
   imageUrl,
-}: MetaTagsProps) => {
+}: SeoProps) => {
   return (
     <Helmet>
       {/* Primary Meta Tags */}
