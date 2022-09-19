@@ -1,10 +1,14 @@
 import { styled } from "@linaria/react";
 import { css } from "@linaria/core";
 
-export const Anchor = styled.a`
-  padding-left: 0.5rem;
+export const Link = styled.a`
   color: #3794ff;
-  visibility: hidden;
+  outline-color: #3794ff;
+`;
+
+export const Anchor = styled(Link)`
+  padding-left: 0.5rem;
+  display: none;
   &:hover {
     text-decoration: underline;
   }
@@ -43,7 +47,7 @@ export const Paragraph = styled.p`
 export const headerClassName = css`
   cursor: pointer;
   &:hover ${Anchor} {
-    visibility: visible;
+    display: inline;
   }
 `;
 

@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import ReactMarkdown from "react-markdown";
-import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react";
 import rehypeRaw from "rehype-raw";
 import * as SC from "./styles";
 import { slugify } from "../../utils/slugify";
@@ -31,18 +30,11 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
       </Suspense>
     );
   },
-  button: ({ onClick, disabled, children }) => {
-    return (
-      <VSCodeButton onClick={onClick} disabled={disabled}>
-        {children}
-      </VSCodeButton>
-    );
-  },
   a: ({ href, children, className }) => {
     return (
-      <VSCodeLink href={href} target="_blank" className={className}>
+      <SC.Link href={href} target="_blank" className={className}>
         {children}
-      </VSCodeLink>
+      </SC.Link>
     );
   },
   header: (props) => {
