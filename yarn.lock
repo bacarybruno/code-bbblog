@@ -1005,6 +1005,19 @@
     "@babel/helper-validator-identifier" "^7.18.6"
     to-fast-properties "^2.0.0"
 
+"@deckdeckgo/highlight-code@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@deckdeckgo/highlight-code/-/highlight-code-4.4.0.tgz#5d6e5463604ce9236d913c328e63a51052f89e0e"
+  integrity sha512-skWKYvIKBpfS3oc7NYu8PvZJ6mVlu1DSsTGD6gt6rsFA3I8TTbtzbo/6deWY/LWkFG1ceGRE5u6LcdzzvBh9vA==
+  dependencies:
+    "@deckdeckgo/utils" "^5.1.0"
+    prismjs "^1.27.0"
+
+"@deckdeckgo/utils@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@deckdeckgo/utils/-/utils-5.1.0.tgz#ac1fc3c25ca6128bf13c1a4c6226cad540c8a164"
+  integrity sha512-ue/1BXkDBZ9k+Tqs3vyCRIjqxjPnl06ab9WGhGubAXoRtJIE7ZN58/pbLsPCYc4xFcY0TPH3tsWhE7eF/FU8Ew==
+
 "@edge-runtime/format@^1.1.0-beta.32":
   version "1.1.0-beta.32"
   resolved "https://registry.yarnpkg.com/@edge-runtime/format/-/format-1.1.0-beta.32.tgz#6f0d5a8726cc54ebb2b1dcb86fe25c0ff093731d"
@@ -1255,24 +1268,12 @@
     mkdirp "^1.0.4"
     path-browserify "^1.0.1"
 
-"@types/codemirror@^5.60.5":
-  version "5.60.5"
-  resolved "https://registry.yarnpkg.com/@types/codemirror/-/codemirror-5.60.5.tgz#5b989a3b4bbe657458cf372c92b6bfda6061a2b7"
-  integrity sha512-TiECZmm8St5YxjFUp64LK0c8WU5bxMDt9YaAek1UqUb9swrSCoJhh92fWu1p3mTEqlHjhB5sY7OFBhWroJXZVg==
-  dependencies:
-    "@types/tern" "*"
-
 "@types/debug@^4.0.0":
   version "4.1.7"
   resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.7.tgz#7cc0ea761509124709b8b2d1090d8f6c17aadb82"
   integrity sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==
   dependencies:
     "@types/ms" "*"
-
-"@types/estree@*":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.0.tgz#5fb2e536c1ae9bf35366eed879e827fa59ca41c2"
-  integrity sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==
 
 "@types/gtag.js@^0.0.11":
   version "0.0.11"
@@ -1357,13 +1358,6 @@
   version "0.16.2"
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
   integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
-
-"@types/tern@*":
-  version "0.23.4"
-  resolved "https://registry.yarnpkg.com/@types/tern/-/tern-0.23.4.tgz#03926eb13dbeaf3ae0d390caf706b2643a0127fb"
-  integrity sha512-JAUw1iXGO1qaWwEOzxTKJZ/5JxVeON9kvGZ/osgZaJImBnyjyn0cjovPsf6FNLmyGY8Vw9DoXZCMlfMkMwHRWg==
-  dependencies:
-    "@types/estree" "*"
 
 "@types/unist@*", "@types/unist@^2.0.0":
   version "2.0.6"
@@ -1622,11 +1616,6 @@ code-block-writer@^10.1.1:
   version "10.1.1"
   resolved "https://registry.yarnpkg.com/code-block-writer/-/code-block-writer-10.1.1.tgz#ad5684ed4bfb2b0783c8b131281ae84ee640a42f"
   integrity sha512-67ueh2IRGst/51p0n6FvPrnRjAGHY5F8xdjkgrYE7DDzpJe6qA07RYQ9VcoUeo5ATOjSOiWpSL3SWBRRbempMw==
-
-codemirror@5.x:
-  version "5.65.8"
-  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.65.8.tgz#50f145ba7eb725091110c31f3a7c1fdef6bdc721"
-  integrity sha512-TNGkSkkoAsmZSf6W6g35LMVQJBHKasc2CKwhr/fTxSYun7cn6J+CbtyNjV/MYlFVkNTsqZoviegyCZimWhoMMA==
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -2928,6 +2917,11 @@ pretty-ms@7.0.1:
   dependencies:
     parse-ms "^2.1.0"
 
+prismjs@^1.27.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.29.0.tgz#f113555a8fa9b57c35e637bba27509dcf802dd12"
+  integrity sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==
+
 prop-types@^15.0.0, prop-types@^15.7.2:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
@@ -2951,11 +2945,6 @@ queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
-
-react-codemirror2@^7.2.1:
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/react-codemirror2/-/react-codemirror2-7.2.1.tgz#38dab492fcbe5fb8ebf5630e5bb7922db8d3a10c"
-  integrity sha512-t7YFmz1AXdlImgHXA9Ja0T6AWuopilub24jRaQdPVbzUJVNKIYuy3uCFZYa7CE5S3UW6SrSa5nAqVQvtzRF9gw==
 
 react-dom@^18.2.0:
   version "18.2.0"
