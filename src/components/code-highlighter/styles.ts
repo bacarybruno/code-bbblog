@@ -7,12 +7,10 @@ export const ControlsWrapper = styled.div`
   margin-right: 14px;
   z-index: 2;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  top: 48px;
+  justify-content: flex-end;
 `;
 
-export const WindowTitle = styled.span`
+export const WindowTitle = styled.em`
   font-family: "Fira Code", monospace;
   font-size: 1rem;
 `;
@@ -31,6 +29,8 @@ export const ClipboardIcon = styled(Icon)`
 export const ClipboardCopy = styled.div`
   width: 40px;
   height: 40px;
+  top: 10px;
+  position: relative;
   background-color: rgb(33, 38, 45);
   border: 1px solid rgba(240, 246, 252, 0.1);
   border-radius: 6px;
@@ -51,21 +51,15 @@ export const ClipboardCopy = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin-top: -12px;
+  margin-top: 32px;
   margin-bottom: 32px;
-  .CodeMirror {
-    height: auto;
-    padding: 60px 18px 18px 12px;
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgb(0 0 0 / 55%);
-    font-family: "Fira Code", monospace;
-    font-size: 1rem;
-    line-height: 1.357rem;
-  }
-  .CodeMirror-cursor {
-    display: none !important;
-  }
+
+  --deckgo-highlight-code-font-family: "Fira Code", monospace;
+
   &:hover ${ClipboardCopy} {
     visibility: visible;
+  }
+  & > deckgo-highlight-code {
+    margin-top: -40px;
   }
 `;

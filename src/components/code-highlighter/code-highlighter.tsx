@@ -1,9 +1,9 @@
-import "codemirror/mode/javascript/javascript";
-import { UnControlled as CodeMirror } from "react-codemirror2";
-import { Editor, EditorConfiguration } from "codemirror";
-import { useRef, useState } from "react";
+import { defineCustomElements as deckDeckGoElement } from "@deckdeckgo/highlight-code/dist/loader/index";
+import { useState } from "react";
 import * as SC from "./styles";
 import { Icon } from "../icon";
+
+deckDeckGoElement();
 
 type CodeHighlighterProps = {
   code: string;
@@ -12,47 +12,15 @@ type CodeHighlighterProps = {
   className?: string;
 };
 
-const Controls = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="54"
-    height="14"
-    viewBox="0 0 54 14"
-  >
-    <g fill="none" fillRule="evenodd" transform="translate(1 1)">
-      <circle
-        cx="6"
-        cy="6"
-        r="6"
-        fill="#FF5F56"
-        stroke="#E0443E"
-        strokeWidth=".5"
-      />
-      <circle
-        cx="26"
-        cy="6"
-        r="6"
-        fill="#FFBD2E"
-        stroke="#DEA123"
-        strokeWidth=".5"
-      />
-      <circle
-        cx="46"
-        cy="6"
-        r="6"
-        fill="#27C93F"
-        stroke="#1AAB29"
-        strokeWidth=".5"
-      />
-    </g>
-  </svg>
-);
-
 const configRegex = /\/\/ meta (.*)/;
 
-type Config =
-  | { markText?: [start: number, end: number][]; fileName?: string }
-  | undefined;
+type HighlightCodeProps = {
+  language: string;
+  children: React.ReactNode;
+  "highlight-lines"?: string;
+};
+
+type CodeConfig = { markText?: string; fileName?: string } | undefined;
 
 const CodeHighlighter = ({
   code: rawCode,
@@ -60,20 +28,11 @@ const CodeHighlighter = ({
   className,
   inline,
 }: CodeHighlighterProps) => {
-  const editor = useRef<Editor | null>(null);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
 
   const configMatch = configRegex.exec(rawCode);
-  const config: Config = configMatch ? JSON.parse(configMatch[1]) : undefined;
+  const config: CodeConfig = configMatch ? JSON.parse(configMatch[1]) : undefined;
   const code = rawCode.replace(configRegex, "").trim();
-  const options: EditorConfiguration = {
-    smartIndent: true,
-    mode: language,
-    theme: "seti",
-    viewportMargin: Infinity,
-    readOnly: true,
-    lineWrapping: true,
-  };
 
   const copyCodeToClipboard = async () => {
     await navigator.clipboard.writeText(code);
@@ -83,33 +42,14 @@ const CodeHighlighter = ({
     }, 3000);
   };
 
-  const highlightLines = (start: number, end: number) => {
-    const MAX_LINE_LENGTH = 100000;
-    const from = { line: start, ch: 0 };
-    const to = { line: end, ch: MAX_LINE_LENGTH };
-    editor.current?.markText(from, to, {
-      css: `background-color: rgba(255, 255, 255, 0.10);`,
-    });
-  };
-
-  const onEditMount = (event: Editor) => {
-    editor.current = event;
-    if (config && Array.isArray(config.markText)) {
-      config.markText.forEach(([start, end]) => {
-        highlightLines(start - 1, end);
-      });
-    }
-  };
-
   if (inline) {
     return <SC.Code className={className}>{code}</SC.Code>;
   }
 
   return (
     <SC.Wrapper>
+      {config?.fileName && <SC.WindowTitle>{config?.fileName}</SC.WindowTitle>}
       <SC.ControlsWrapper>
-        <Controls />
-        <SC.WindowTitle>{config?.fileName}</SC.WindowTitle>
         <SC.ClipboardCopy onClick={copyCodeToClipboard}>
           <Icon
             name={showCopySuccess ? "check" : "copy"}
@@ -118,9 +58,23 @@ const CodeHighlighter = ({
           />
         </SC.ClipboardCopy>
       </SC.ControlsWrapper>
-      <CodeMirror value={code} options={options} editorDidMount={onEditMount} />
+      <deckgo-highlight-code
+        language={language}
+        highlight-lines={config?.markText}
+      >
+        <code slot="code">{code}</code>
+      </deckgo-highlight-code>
     </SC.Wrapper>
   );
 };
 
 export default CodeHighlighter;
+
+// TODO: move this to a .d.ts file
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "deckgo-highlight-code": HighlightCodeProps;
+    }
+  }
+}
