@@ -14,7 +14,11 @@ type MarkdownProps = {
 
 const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
   img: (props) => {
-    return <SC.Img {...props} referrerPolicy="no-referrer" />;
+    return (
+      <a href={props.src} target="_blank">
+        <SC.Img {...props} referrerPolicy="no-referrer" />
+      </a>
+    );
   },
   code: ({ inline, className, children }) => {
     const match = /language-(\w+)/.exec(className || "");

@@ -53,6 +53,7 @@ export const ClipboardCopy = styled.div`
 export const Wrapper = styled.div`
   margin-top: 32px;
   margin-bottom: 32px;
+  display: grid;
 
   --deckgo-highlight-code-font-family: "Fira Code", monospace;
 
