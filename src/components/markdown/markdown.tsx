@@ -1,6 +1,7 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import { HeadingProps } from "react-markdown/lib/ast-to-react";
 import * as SC from "./styles";
 import { slugify } from "../../utils/slugify";
 
@@ -10,6 +11,32 @@ const CodeHighlighter = React.lazy(
 
 type MarkdownProps = {
   content: string;
+};
+
+const renderHeader = ({ level, children }: HeadingProps) => {
+  const [hovered, setHovered] = useState(false);
+  const HeadingElement = `h${level}` as
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6";
+
+  const text = children[0];
+  const anchorId = slugify(typeof text === "string" ? text : "");
+
+  return (
+    <HeadingElement
+      id={anchorId}
+      className={SC.headerClassName}
+      onMouseOver={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {children}
+      {hovered && <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>}
+    </HeadingElement>
+  );
 };
 
 const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
@@ -44,66 +71,12 @@ const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
   header: (props) => {
     return <SC.Header {...props} />;
   },
-  h1: (props) => {
-    const text = props.children[0];
-    const anchorId = slugify(typeof text === "string" ? text : "");
-    return (
-      <h1 {...props} id={anchorId} className={SC.headerClassName}>
-        {text}
-        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
-      </h1>
-    );
-  },
-  h2: (props) => {
-    const text = props.children[0];
-    const anchorId = slugify(typeof text === "string" ? text : "");
-    return (
-      <h2 {...props} id={anchorId} className={SC.headerClassName}>
-        {text}
-        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
-      </h2>
-    );
-  },
-  h3: (props) => {
-    const text = props.children[0];
-    const anchorId = slugify(typeof text === "string" ? text : "");
-    return (
-      <h3 {...props} id={anchorId} className={SC.headerClassName}>
-        {text}
-        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
-      </h3>
-    );
-  },
-  h4: (props) => {
-    const text = props.children[0];
-    const anchorId = slugify(typeof text === "string" ? text : "");
-    return (
-      <h4 {...props} id={anchorId} className={SC.headerClassName}>
-        {text}
-        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
-      </h4>
-    );
-  },
-  h5: (props) => {
-    const text = props.children[0];
-    const anchorId = slugify(typeof text === "string" ? text : "");
-    return (
-      <h5 {...props} id={anchorId} className={SC.headerClassName}>
-        {text}
-        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
-      </h5>
-    );
-  },
-  h6: (props) => {
-    const text = props.children[0];
-    const anchorId = slugify(typeof text === "string" ? text : "");
-    return (
-      <h6 {...props} id={anchorId} className={SC.headerClassName}>
-        {text}
-        <SC.Anchor href={`#${anchorId}`}>#</SC.Anchor>
-      </h6>
-    );
-  },
+  h1: renderHeader,
+  h2: renderHeader,
+  h3: renderHeader,
+  h4: renderHeader,
+  h5: renderHeader,
+  h6: renderHeader,
   p: (props) => {
     return <SC.Paragraph {...props} />;
   },

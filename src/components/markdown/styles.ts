@@ -8,7 +8,6 @@ export const Link = styled.a`
 
 export const Anchor = styled(Link)`
   padding-left: 0.5rem;
-  display: none;
   &:hover {
     text-decoration: underline;
   }
@@ -35,9 +34,6 @@ export const Header = styled.h1`
 
 export const Paragraph = styled.p`
   font-size: 1.17rem;
-  & > vscode-link {
-    font-size: unset;
-  }
   & > img {
     display: flex;
     margin: auto;
@@ -46,14 +42,8 @@ export const Paragraph = styled.p`
 
 export const headerClassName = css`
   cursor: pointer;
-  &:hover ${Anchor} {
-    display: inline;
-  }
 `;
 
 export const Li = styled.li`
   font-size: 1.1rem;
-  & > vscode-link {
-    font-size: unset;
-  }
 `;
