@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Flexbox } from "./flexbox";
 import { Footer } from "./footer/footer";
 import { Container } from "./container";
@@ -5,7 +6,7 @@ import { Container } from "./container";
 type LayoutProps = {
   title?: string;
   description?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export const Layout = ({ children }: LayoutProps) => {

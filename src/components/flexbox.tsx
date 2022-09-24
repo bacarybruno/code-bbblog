@@ -1,12 +1,13 @@
 import { styled } from '@linaria/react';
+import type { CSSProperties, ReactNode } from "react";
 
 type FlexboxProps = {
   className?: string;
-  children: React.ReactNode;
-  flexDirection?: React.CSSProperties['flexDirection'];
-  justifyContent?: React.CSSProperties['justifyContent'];
-  alignItems?: React.CSSProperties['alignItems'];
-  flex?: React.CSSProperties['flex'];
+  children: ReactNode;
+  flexDirection?: CSSProperties['flexDirection'];
+  justifyContent?: CSSProperties['justifyContent'];
+  alignItems?: CSSProperties['alignItems'];
+  flex?: CSSProperties['flex'];
 };
 
 const Wrapper = styled.div`

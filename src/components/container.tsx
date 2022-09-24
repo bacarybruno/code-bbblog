@@ -1,9 +1,10 @@
 import { styled } from "@linaria/react";
+import type { CSSProperties, ReactNode } from "react";
 
 type ContainerProps = {
   className?: string;
-  style?: React.CSSProperties;
-  children: React.ReactNode;
+  style?: CSSProperties;
+  children: ReactNode;
 };
 
 export const Wrapper = styled.div`

@@ -1,11 +1,12 @@
-import React, { Suspense, useState } from "react";
+import { Suspense, useState, lazy } from "react";
+import type { ComponentProps } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { HeadingProps } from "react-markdown/lib/ast-to-react";
 import * as SC from "./styles";
 import { slugify } from "../../utils/slugify";
 
-const CodeHighlighter = React.lazy(
+const CodeHighlighter = lazy(
   () => import("../code-highlighter/code-highlighter")
 );
 
@@ -39,7 +40,7 @@ const renderHeader = ({ level, children }: HeadingProps) => {
   );
 };
 
-const components: React.ComponentProps<typeof ReactMarkdown>["components"] = {
+const components: ComponentProps<typeof ReactMarkdown>["components"] = {
   img: (props) => {
     return (
       <a href={props.src} target="_blank">
