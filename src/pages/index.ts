@@ -1,7 +1,6 @@
 import type { FunctionComponent } from "react";
 import homePage from "./home.md?raw";
 import BlogPage from "./blog";
-import projectsPage from "./projects.md?raw";
 import aboutMePage from "./about.md?raw";
 
 export type Page = {
@@ -24,12 +23,6 @@ const contents = [
     icon: "book",
     slug: "/blog",
     body: BlogPage,
-  },
-  {
-    title: "Projects",
-    icon: "json",
-    slug: "/projects",
-    body: projectsPage,
   },
   {
     title: "About me",

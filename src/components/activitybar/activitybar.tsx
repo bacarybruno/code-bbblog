@@ -73,8 +73,7 @@ export const Activitybar = () => {
           <MenuAction
             iconName="json"
             title="My projects"
-            onClick={() => setLocation("/projects")}
-            active={currentTab?.slug.toLowerCase() === "/projects"}
+            onClick={() => window.open("https://github.com/bacarybruno?tab=repositories", "_blank")}
           />
         </div>
         <div>
