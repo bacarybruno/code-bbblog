@@ -9,6 +9,7 @@ type FindPostBySlugQueryResult = {
       icon: string;
       slug: string;
       body: string;
+      excerpt: string;
       sys: {
         publishedAt: string;
       };
@@ -31,6 +32,7 @@ export const usePost = (slug: string | null) => {
                   icon
                   slug
                   body
+                  excerpt
                   sys {
                     publishedAt
                   }
