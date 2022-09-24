@@ -2,15 +2,12 @@ import useSWR from "swr";
 import { request, gql } from "graphql-request";
 import { CONTENT_API_URL, IS_PROD } from "../constants";
 
-const fetchSinglePost = (query: string, slug: string, preview: boolean) =>
-  request(CONTENT_API_URL, query, { slug, preview });
-
 type FindPostBySlugQueryResult = {
   blogPostCollection: {
     items: {
+      title: string;
       icon: string;
       slug: string;
-      title: string;
       body: string;
       sys: {
         publishedAt: string;
@@ -18,6 +15,9 @@ type FindPostBySlugQueryResult = {
     }[];
   };
 };
+
+const fetchSinglePost = (query: string, slug: string, preview: boolean) =>
+  request(CONTENT_API_URL, query, { slug, preview });
 
 export const usePost = (slug: string | null) => {
   const { data, error } = useSWR<FindPostBySlugQueryResult>(

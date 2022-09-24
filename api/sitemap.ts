@@ -56,16 +56,16 @@ export default async (_request: VercelRequest, response: VercelResponse) => {
 
   console.log("Got", pages, "pages in total");
   const sitemap = `
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    ${pages.map((path) => `
-      <url>
-        <loc>https://bacarybruno.com${path}</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-      </url>
-    `).join("\n\t")}
-  </urlset>
-`;
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      ${pages.map((path) => `
+        <url>
+          <loc>https://bacarybruno.com${path}</loc>
+          <changefreq>daily</changefreq>
+          <priority>0.7</priority>
+        </url>
+      `)}
+    </urlset>
+  `;
 
   return response
     .status(200)
