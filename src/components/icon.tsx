@@ -1,4 +1,5 @@
 import { styled } from "@linaria/react";
+import type { CSSProperties, SyntheticEvent } from "react";
 import JavaScriptIcon from "seti-ui/icons/javascript.svg";
 import ReactIcon from "seti-ui/icons/react.svg";
 import TypeScriptIcon from "seti-ui/icons/typescript.svg";
@@ -16,8 +17,8 @@ export type IconProps = {
   size?: "small" | "medium";
   className?: string;
   title: string;
-  style?: React.CSSProperties;
-  onClick?: (event: React.SyntheticEvent) => void;
+  style?: CSSProperties;
+  onClick?: (event: SyntheticEvent) => void;
 };
 
 const fontSizes = {

@@ -1,4 +1,5 @@
 import { defineCustomElements as deckDeckGoElement } from "@deckdeckgo/highlight-code/dist/loader/index";
+import type { ReactNode } from "react";
 import { useState } from "react";
 import * as SC from "./styles";
 import { Icon } from "../icon";
@@ -16,7 +17,7 @@ const configRegex = /\/\/ meta (.*)/;
 
 type HighlightCodeProps = {
   language: string;
-  children: React.ReactNode;
+  children: ReactNode;
   "highlight-lines"?: string;
 };
 

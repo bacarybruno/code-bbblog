@@ -1,4 +1,5 @@
-import React, { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, lazy } from "react";
+import type { SyntheticEvent } from "react";
 import { useLocation, useRoute } from "wouter";
 // @ts-ignore
 import readingTime from "reading-time/lib/reading-time";
@@ -8,13 +9,13 @@ import { defaultPage, findPage } from "../../pages";
 import { usePost } from "../../hooks";
 import * as SC from "./styles";
 
-const Markdown = React.lazy(() => import("../markdown/markdown"));
+const Markdown = lazy(() => import("../markdown/markdown"));
 
 type TabpanelIconProps = {
   active?: boolean;
   name: string;
   title: string;
-  onClick: (event: React.SyntheticEvent) => void;
+  onClick: (event: SyntheticEvent) => void;
 };
 
 const TabpanelIcon = ({ active, name, title, onClick }: TabpanelIconProps) => {
@@ -33,7 +34,7 @@ type TabpanelHeaderProps = {
   active?: boolean;
   icon: string;
   onClose: () => void;
-  onClick: (event: React.SyntheticEvent) => void;
+  onClick: (event: SyntheticEvent) => void;
   type: "seticon" | "codicon";
 };
 
@@ -47,7 +48,7 @@ const TabpanelHeader = ({
 }: TabpanelHeaderProps) => {
   const [showCloseIcon, setShowCloseIcon] = useState(false);
 
-  const onCloseTab = (event: React.SyntheticEvent) => {
+  const onCloseTab = (event: SyntheticEvent) => {
     event.stopPropagation();
     onClose();
   };
@@ -107,36 +108,33 @@ const useTabpaneActions = () => {
   const focusTab = useTabsStore((state) => state.focusTab);
   const openTab = useTabsStore((state) => state.openTab);
 
-  const isCurrentPageOpened = openedTabs.find(
-    (tab) => tab.slug.toLowerCase() === page?.slug?.toLowerCase()
-  );
-
   const onCloseTab = (tabSlug: string) => {
-    if (openedTabs.length === 1 && openedTabs[0].slug === tabSlug) {
-      if (tabSlug === defaultPage.slug) return;
-      closeTab(tabSlug);
+    closeTab(tabSlug);
+
+    if (openedTabs.size === 1 && openedTabs.has(tabSlug)) {
       openTab(defaultPage);
       setLocation(defaultPage.slug);
       return;
     }
 
-    closeTab(tabSlug);
-
     const isCurrentlyOpenedTab =
       currentTab?.slug.toLowerCase() === tabSlug.toLowerCase();
 
     if (isCurrentlyOpenedTab) {
-      const otherTabs = openedTabs.filter(
-        (openedTab) => openedTab.slug.toLowerCase() !== tabSlug.toLowerCase()
+      const otherTabs = Array.from(openedTabs.keys()).filter(
+        (openedTab) => openedTab.toLowerCase() !== tabSlug.toLowerCase()
       );
-      const newFocusedTab = otherTabs[otherTabs.length - 1] || null;
-      if (!newFocusedTab) return;
+      const nextTabSlub = otherTabs[otherTabs.length - 1] || null;
+      if (!nextTabSlub) return;
 
-      focusTab(newFocusedTab);
+      const nextTab = openedTabs.get(nextTabSlub);
+      if (!nextTab) return;
+
+      focusTab(nextTab);
       setLocation(
-        newFocusedTab.type === "post"
-          ? `/posts/${newFocusedTab.slug}`
-          : newFocusedTab.slug
+        nextTab.type === "post"
+          ? `/posts/${nextTab.slug}`
+          : nextTab.slug
       );
     }
   };
@@ -155,12 +153,9 @@ const useTabpaneActions = () => {
       type: matchPosts ? "post" : "page",
     };
 
-    if (!isCurrentPageOpened) {
-      openTab(newTab);
-    }
-
+    openTab(newTab);
     focusTab(newTab);
-  }, [enabled, isLoading, page, isCurrentPageOpened, matchPosts]);
+  }, [enabled, isLoading, page, matchPosts]);
 
   return {
     onOpenTab: setLocation,
@@ -200,6 +195,8 @@ const TabpaneContent = () => {
     readTime = readingTime(currentTab.body).text;
   }
 
+  const Content = currentTab.body;
+
   return (
     <SC.TabpaneContainer>
       <SC.TabpaneContent>
@@ -220,9 +217,13 @@ const TabpaneContent = () => {
             </SC.BlogPostHeader>
           )}
           <article>
-            <Suspense fallback={null}>
-              <Markdown content={currentTab.body} />
-            </Suspense>
+            {typeof Content === "string" ? (
+              <Suspense fallback={null}>
+                <Markdown content={Content} />
+              </Suspense>
+            ) : (
+              <Content />
+            )}
           </article>
           {currentTab.type === "post" && (
             <footer>
@@ -245,7 +246,7 @@ const TabpaneHeader = () => {
     <SC.TabpaneHeaderContainer>
       <Flexbox>
         <SC.TabContainer>
-          {openedTabs.map((tab) => (
+          {Array.from(openedTabs.values()).map((tab) => (
             <TabpanelHeader
               title={tab.title}
               icon={tab.icon}

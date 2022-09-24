@@ -1,12 +1,13 @@
+import type { FunctionComponent } from "react";
 import homePage from "./home.md?raw";
-import blogPage from "./blog.md?raw";
+import BlogPage from "./blog";
 import projectsPage from "./projects.md?raw";
 import aboutMePage from "./about.md?raw";
 
 export type Page = {
   type: "page";
   title: string;
-  body: string;
+  body: string | FunctionComponent;
   icon: string;
   slug: string;
 };
@@ -22,7 +23,7 @@ const contents = [
     title: "Blog",
     icon: "book",
     slug: "/blog",
-    body: blogPage,
+    body: BlogPage,
   },
   {
     title: "Projects",

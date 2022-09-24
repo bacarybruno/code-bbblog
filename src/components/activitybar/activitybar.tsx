@@ -1,10 +1,11 @@
 import { useLocation } from "wouter";
+import type { SyntheticEvent } from "react";
 import { Flexbox, Icon } from "../index";
 import { useLayoutStore, useTabsStore } from "../../store";
 import * as SC from "./styles";
 
 type MenubarProps = {
-  onClick: (event: React.SyntheticEvent) => void;
+  onClick: (event: SyntheticEvent) => void;
 };
 
 const Menubar = ({ onClick }: MenubarProps) => {
@@ -18,7 +19,7 @@ const Menubar = ({ onClick }: MenubarProps) => {
 type MenuActionProps = {
   iconName: string;
   title: string;
-  onClick: (event: React.SyntheticEvent) => void;
+  onClick: (event: SyntheticEvent) => void;
   active?: boolean;
 };
 
