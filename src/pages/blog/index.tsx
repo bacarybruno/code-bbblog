@@ -34,7 +34,7 @@ const BlogPage = () => {
     );
   };
 
-  return data.map(renderPost);
+  return <>{data.map(renderPost)}</>;
 };
 
 export default BlogPage;
