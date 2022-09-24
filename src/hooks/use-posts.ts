@@ -2,21 +2,27 @@ import useSWR from "swr";
 import { request, gql } from "graphql-request";
 import { CONTENT_API_URL, IS_PROD } from "../constants";
 
-const fetchPosts = (query: string, preview: boolean) =>
-  request(CONTENT_API_URL, query, { preview });
+export type BlogPostItem = {
+  title: string;
+  icon: string;
+  slug: string;
+  excerpt: string;
+  body: string;
+  sys: {
+    id: string;
+    publishedAt: string;
+  };
+};
 
 type FetchPostsQueryResult = {
   blogPostCollection: {
-    items: {
-      icon: string;
-      slug: string;
-      title: string;
-      sys: {
-        id: string;
-      };
-    }[];
+    items: BlogPostItem[];
   };
 };
+
+const fetchPosts = (query: string, preview: boolean) =>
+  request(CONTENT_API_URL, query, { preview });
+
 
 export const usePosts = () => {
   const { data, error } = useSWR<FetchPostsQueryResult>(
@@ -28,8 +34,11 @@ export const usePosts = () => {
               title
               icon
               slug
+              excerpt
+              body
               sys {
                 id
+                publishedAt
               }
             }
           }

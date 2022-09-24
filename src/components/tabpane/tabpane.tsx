@@ -1,8 +1,8 @@
+// @ts-ignore
+import readingTime from "reading-time/lib/reading-time";
 import { Suspense, useEffect, useState, lazy } from "react";
 import type { SyntheticEvent } from "react";
 import { useLocation, useRoute } from "wouter";
-// @ts-ignore
-import readingTime from "reading-time/lib/reading-time";
 import { Flexbox, SvgIcon, Seo } from "../index";
 import { PageTab, useTabsStore } from "../../store";
 import { defaultPage, findPage } from "../../pages";

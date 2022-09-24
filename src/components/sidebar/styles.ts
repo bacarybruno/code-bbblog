@@ -80,7 +80,6 @@ export const ListItem = styled.li<{ active?: boolean }>`
 
 export const Icon = styled(SvgIcon)`
   margin-right: 6px;
-  color: #c5c5c5;
 `;
 
 export const PostsContainer = styled(Container)`
