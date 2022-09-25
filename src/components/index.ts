@@ -1,4 +1,5 @@
 export { Activitybar } from './activitybar/activitybar';
+export { Comments } from './comments/comments';
 export { Sidebar } from './sidebar/sidebar';
 export { Tabpane } from './tabpane/tabpane';
 export { Container } from './container';

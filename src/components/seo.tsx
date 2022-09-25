@@ -9,7 +9,7 @@ type SeoProps = {
 
 export const Seo = ({
   title = 'Code-BBBlog',
-  websiteUrl = window.location.origin,
+  websiteUrl = window.location.href,
   description = '✌️ Hello! I\'m Bruno. A FullStack Developer and Lifelong learner who loves building great products that has a positive impact 🤩 Passionate about Software Engineering 💻, japanese anime\'s 🥷 and building side projects.',
   imageUrl,
 }: SeoProps) => {
