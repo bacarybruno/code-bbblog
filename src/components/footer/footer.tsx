@@ -1,6 +1,6 @@
-import { Flexbox } from "../flexbox";
-import { Icon } from "../icon";
-import * as SC from "./styles";
+import { Flexbox } from '../flexbox';
+import { Icon } from '../icon';
+import * as SC from './styles';
 
 type FooterButtonProps = {
   iconName: string;

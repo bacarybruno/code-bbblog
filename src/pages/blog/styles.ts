@@ -1,5 +1,5 @@
-import { styled } from "@linaria/react";
-import { Paragraph } from "../../components/markdown/styles";
+import { styled } from '@linaria/react';
+import { Paragraph } from '../../components/markdown/styles';
 
 export const Excerpt = styled(Paragraph)`
   margin-top: 8px;

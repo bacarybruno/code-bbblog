@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
 
 type SeoProps = {
   title?: string;
@@ -8,9 +8,9 @@ type SeoProps = {
 };
 
 export const Seo = ({
-  title = "Code-BBBlog",
+  title = 'Code-BBBlog',
   websiteUrl = window.location.origin,
-  description = "✌️ Hello! I'm Bruno. A FullStack Developer and Lifelong learner who loves building great products that has a positive impact 🤩 Passionate about Software Engineering 💻, japanese anime's 🥷 and building side projects.",
+  description = '✌️ Hello! I\'m Bruno. A FullStack Developer and Lifelong learner who loves building great products that has a positive impact 🤩 Passionate about Software Engineering 💻, japanese anime\'s 🥷 and building side projects.',
   imageUrl,
 }: SeoProps) => {
   return (

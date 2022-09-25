@@ -1,6 +1,6 @@
-import { styled } from "@linaria/react";
-import { Container } from "../container";
-import { Icon as BaseIcon, SvgIcon } from "../icon";
+import { styled } from '@linaria/react';
+import { Container } from '../container';
+import { Icon as BaseIcon, SvgIcon } from '../icon';
 
 export const Sidebar = styled.nav`
   width: 300px;
@@ -72,9 +72,9 @@ export const ListItem = styled.li<{ active?: boolean }>`
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: ${(props) => (props.active ? "#37373d" : "transparent")};
+  background-color: ${(props) => (props.active ? '#37373d' : 'transparent')};
   &:hover {
-    background-color: ${(props) => (props.active ? "#37373d" : "#2a2d2e")};
+    background-color: ${(props) => (props.active ? '#37373d' : '#2a2d2e')};
   }
 `;
 

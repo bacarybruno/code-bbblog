@@ -1,20 +1,20 @@
-import { styled } from "@linaria/react";
-import type { CSSProperties, SyntheticEvent } from "react";
-import JavaScriptIcon from "seti-ui/icons/javascript.svg";
-import ReactIcon from "seti-ui/icons/react.svg";
-import TypeScriptIcon from "seti-ui/icons/typescript.svg";
-import JSONIcon from "seti-ui/icons/json.svg";
-import CSSIcon from "seti-ui/icons/css.svg";
-import GitIcon from "seti-ui/icons/git.svg";
-import HTMLIcon from "seti-ui/icons/html.svg";
-import MarkdownIcon from "seti-ui/icons/markdown.svg";
-import NpmIcon from "seti-ui/icons/npm.svg";
-import YarnIcon from "seti-ui/icons/yarn.svg";
-import DefaultIcon from "seti-ui/icons/default.svg";
+import { styled } from '@linaria/react';
+import type { CSSProperties, SyntheticEvent } from 'react';
+import JavaScriptIcon from 'seti-ui/icons/javascript.svg';
+import ReactIcon from 'seti-ui/icons/react.svg';
+import TypeScriptIcon from 'seti-ui/icons/typescript.svg';
+import JSONIcon from 'seti-ui/icons/json.svg';
+import CSSIcon from 'seti-ui/icons/css.svg';
+import GitIcon from 'seti-ui/icons/git.svg';
+import HTMLIcon from 'seti-ui/icons/html.svg';
+import MarkdownIcon from 'seti-ui/icons/markdown.svg';
+import NpmIcon from 'seti-ui/icons/npm.svg';
+import YarnIcon from 'seti-ui/icons/yarn.svg';
+import DefaultIcon from 'seti-ui/icons/default.svg';
 
 export type IconProps = {
   name: string;
-  size?: "small" | "medium";
+  size?: 'small' | 'medium';
   className?: string;
   title: string;
   style?: CSSProperties;
@@ -32,7 +32,7 @@ const StyledIcon = styled.i`
 
 export const Icon = ({
   name,
-  size = "small",
+  size = 'small',
   className,
   title,
   style,
@@ -64,7 +64,7 @@ const seticons = {
 
 export const SvgIcon = ({
   name,
-  size = "small",
+  size = 'small',
   className,
   title,
   style,
@@ -72,7 +72,7 @@ export const SvgIcon = ({
 }: IconProps) => {
   return (
     <img
-      src={seticons[name as keyof typeof seticons] || seticons["default"]}
+      src={seticons[name as keyof typeof seticons] || seticons['default']}
       width={fontSizes[size] * 1.5}
       height={fontSizes[size] * 1.5}
       className={className}

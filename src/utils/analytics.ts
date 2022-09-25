@@ -12,7 +12,7 @@ type GaPageViewProps = {
 };
 
 export const trackEvent = ({ action, category, label, value }: GaEventArgs) => {
-  window.gtag("event", action, {
+  window.gtag('event', action, {
     event_category: category,
     event_label: label,
     value: value,
@@ -30,7 +30,7 @@ export const trackPageView = (
     title: document.title,
   }
 ) => {
-  window.gtag("event", "page_view", {
+  window.gtag('event', 'page_view', {
     page_path: path,
     page_location: location,
     page_title: title,

@@ -1,9 +1,9 @@
-import type { FunctionComponent } from "react";
-import create from "zustand";
-import { immer } from "zustand/middleware/immer";
+import type { FunctionComponent } from 'react';
+import create from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
 export interface PageTab {
-  type: "page" | "post";
+  type: 'page' | 'post';
   title: string;
   slug: string;
   body: string | FunctionComponent;

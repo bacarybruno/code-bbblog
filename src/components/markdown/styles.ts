@@ -1,5 +1,5 @@
-import { styled } from "@linaria/react";
-import { css } from "@linaria/core";
+import { styled } from '@linaria/react';
+import { css } from '@linaria/core';
 
 export const Link = styled.a`
   color: #3794ff;

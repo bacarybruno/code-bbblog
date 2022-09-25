@@ -1,14 +1,14 @@
-import { styled } from "@linaria/react";
-import { Container, Icon } from "../index";
-import { Header } from "../markdown/styles";
-export { Paragraph } from "../markdown/styles";
+import { styled } from '@linaria/react';
+import { Container, Icon } from '../index';
+import { Header } from '../markdown/styles';
+export { Paragraph } from '../markdown/styles';
 
 export const TabpanelIcon = styled(Icon)<{ active?: boolean }>`
   padding: 2px;
   border-radius: 5px;
   margin-left: 4px;
   color: ${(props) =>
-    props.active ? "rgb(204, 204, 204)" : "rgba(255, 255, 255, 0.4)"};
+    props.active ? 'rgb(204, 204, 204)' : 'rgba(255, 255, 255, 0.4)'};
 
   &:hover {
     background-color: rgba(90, 93, 94, 0.31);
@@ -33,9 +33,9 @@ export const TabpanelHeader = styled.div<{ active?: boolean }>`
   flex: none;
   align-items: center;
   background-color: ${(props) =>
-    props.active ? "rgb(30, 30, 30)" : "rgb(45, 45, 45)"};
+    props.active ? 'rgb(30, 30, 30)' : 'rgb(45, 45, 45)'};
   color: ${(props) =>
-    props.active ? "rgb(255, 255, 255)" : "rgba(255, 255, 255, 0.5)"};
+    props.active ? 'rgb(255, 255, 255)' : 'rgba(255, 255, 255, 0.5)'};
 `;
 
 export const Codicon = styled(Icon)`

@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
-import { Flexbox } from "./flexbox";
-import { Footer } from "./footer/footer";
-import { Container } from "./container";
+import type { ReactNode } from 'react';
+import { Flexbox } from './flexbox';
+import { Footer } from './footer/footer';
+import { Container } from './container';
 
 type LayoutProps = {
   title?: string;

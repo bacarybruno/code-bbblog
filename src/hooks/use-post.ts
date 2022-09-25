@@ -1,6 +1,6 @@
-import useSWR from "swr";
-import { request, gql } from "graphql-request";
-import { CONTENT_API_URL, IS_PROD } from "../constants";
+import useSWR from 'swr';
+import { request, gql } from 'graphql-request';
+import { CONTENT_API_URL, IS_PROD } from '../constants';
 
 type FindPostBySlugQueryResult = {
   blogPostCollection: {
@@ -24,7 +24,7 @@ export const usePost = (slug: string | null) => {
   const { data, error } = useSWR<FindPostBySlugQueryResult>(
     slug
       ? [
-          gql`
+        gql`
             query FindPostBySlug($slug: String!, $preview: Boolean) {
               blogPostCollection(where: { slug: $slug }, preview: $preview) {
                 items {
@@ -40,9 +40,9 @@ export const usePost = (slug: string | null) => {
               }
             }
           `,
-          slug,
-          !IS_PROD,
-        ]
+        slug,
+        !IS_PROD,
+      ]
       : null,
     fetchSinglePost
   );
