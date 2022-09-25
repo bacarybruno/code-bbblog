@@ -16,17 +16,11 @@ type MarkdownProps = {
 type HeadingProps = {
   level: number;
   children: ReactNode[];
-}
+};
 
 const Heading = ({ level, children }: HeadingProps) => {
   const [hovered, setHovered] = useState(false);
-  const HeadingElement = `h${level}` as
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'h5'
-    | 'h6';
+  const HeadingElement = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
   const text = children[0];
   const anchorId = slugify(typeof text === 'string' ? text : '');
@@ -47,9 +41,11 @@ const Heading = ({ level, children }: HeadingProps) => {
 const components: ComponentProps<typeof ReactMarkdown>['components'] = {
   img: (props) => {
     return (
-      <a href={props.src} target="_blank" rel="noreferrer">
-        <SC.Img {...props} referrerPolicy="no-referrer" />
-      </a>
+      <SC.Img
+        {...props}
+        referrerPolicy="no-referrer"
+        onClick={() => window.open(props.src, '_blank')}
+      />
     );
   },
   code: ({ inline, className, children }) => {

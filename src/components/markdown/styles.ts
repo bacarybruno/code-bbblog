@@ -18,6 +18,7 @@ export const Img = styled.img`
     max-width: 100%;
     margin-top: 24px;
     margin-bottom: 8px;
+    cursor: pointer;
   }
   & + em {
     display: flex;
