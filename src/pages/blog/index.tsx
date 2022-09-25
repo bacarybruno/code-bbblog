@@ -1,9 +1,8 @@
-// @ts-ignore
-import readingTime from "reading-time/lib/reading-time";
-import { SvgIcon } from "../../components";
-import { Link } from "../../components/markdown/styles";
-import { BlogPostItem, usePosts } from "../../hooks/use-posts";
-import * as SC from "./styles";
+import readingTime from 'reading-time';
+import { SvgIcon } from '../../components';
+import { Link } from '../../components/markdown/styles';
+import { BlogPostItem, usePosts } from '../../hooks/use-posts';
+import * as SC from './styles';
 
 const BlogPage = () => {
   const { data, isLoading } = usePosts();
@@ -12,11 +11,11 @@ const BlogPage = () => {
   if (!data) return null;
 
   const renderPost = (post: BlogPostItem) => {
-    const publishedAt = new Intl.DateTimeFormat("en-US", {
-      dateStyle: "long",
+    const publishedAt = new Intl.DateTimeFormat('en-US', {
+      dateStyle: 'long',
     }).format(new Date(post.sys.publishedAt));
 
-    const readTime = readingTime(post.body).text;
+    const readTime = `${readingTime(post.body).minutes} min read`;
 
     return (
       <SC.Article key={post.sys.id}>

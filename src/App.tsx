@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useLocation } from "wouter";
-import { trackPageView } from "./utils/analytics";
+import { useEffect } from 'react';
+import { useLocation } from 'wouter';
+import { trackPageView } from './utils/analytics';
 import {
   Activitybar,
   Content,
@@ -8,14 +8,14 @@ import {
   Layout,
   Sidebar,
   Seo,
-} from "./components";
+} from './components';
 
 const Home = () => {
   const [location] = useLocation();
 
   useEffect(() => {
     setTimeout(trackPageView, 0);
-  }, [location])
+  }, [location]);
 
   return (
     <>

@@ -1,5 +1,5 @@
-import { styled } from "@linaria/react";
-import { Icon } from "../icon";
+import { styled } from '@linaria/react';
+import { Icon } from '../icon';
 
 export const MenubarButton = styled.div`
   width: 100%;
@@ -26,12 +26,12 @@ export const MenuAction = styled.div<{ active?: boolean }>`
     color: #fff;
   }
   border-left: 2px solid
-    ${(props) => (props.active ? "rgb(255,255,255)" : "unset")};
+    ${(props) => (props.active ? 'rgb(255,255,255)' : 'unset')};
 `;
 
 export const MenuActionIcon = styled(Icon)<{ active?: boolean }>`
   color: ${(props) =>
-    props.active ? "rgb(255,255,255)" : "rgba(255,255,255,0.4)"};
+    props.active ? 'rgb(255,255,255)' : 'rgba(255,255,255,0.4)'};
 `;
 
 export const Activitybar = styled.div`

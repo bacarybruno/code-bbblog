@@ -1,5 +1,5 @@
-import { styled } from "@linaria/react";
-import { Icon } from "../icon";
+import { styled } from '@linaria/react';
+import { Icon } from '../icon';
 
 export const ControlsWrapper = styled.div`
   position: relative;

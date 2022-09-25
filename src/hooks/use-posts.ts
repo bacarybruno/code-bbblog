@@ -1,6 +1,6 @@
-import useSWR from "swr";
-import { request, gql } from "graphql-request";
-import { CONTENT_API_URL, IS_PROD } from "../constants";
+import useSWR from 'swr';
+import { request, gql } from 'graphql-request';
+import { CONTENT_API_URL, IS_PROD } from '../constants';
 
 export type BlogPostItem = {
   title: string;

@@ -1,11 +1,11 @@
-import { useLocation } from "wouter";
-import { useState } from "react";
-import { useTabsStore } from "../../store";
-import { usePosts } from "../../hooks";
-import * as SC from "./styles";
+import { useLocation } from 'wouter';
+import { useState } from 'react';
+import { useTabsStore } from '../../store';
+import { usePosts } from '../../hooks';
+import * as SC from './styles';
 
 export const Sidebar = () => {
-  const [_, setLocation] = useLocation();
+  const [, setLocation] = useLocation();
   const { currentTab } = useTabsStore();
   const [showArticles, setShowArticles] = useState(true);
   const { data: posts } = usePosts();
@@ -18,7 +18,7 @@ export const Sidebar = () => {
       <>
         <SC.SidebarPanel onClick={() => setShowArticles(!showArticles)}>
           <SC.PanelIcon
-            name={showArticles ? "chevron-down" : "chevron-right"}
+            name={showArticles ? 'chevron-down' : 'chevron-right'}
             title=""
           />
           <SC.H3>Articles</SC.H3>

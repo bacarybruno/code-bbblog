@@ -1,15 +1,14 @@
-// @ts-ignore
-import readingTime from "reading-time/lib/reading-time";
-import { Suspense, useEffect, useState, lazy } from "react";
-import type { SyntheticEvent } from "react";
-import { useLocation, useRoute } from "wouter";
-import { Flexbox, SvgIcon, Seo } from "../index";
-import { PageTab, useTabsStore } from "../../store";
-import { defaultPage, findPage } from "../../pages";
-import { usePost } from "../../hooks";
-import * as SC from "./styles";
+import readingTime from 'reading-time';
+import { Suspense, useEffect, useState, lazy } from 'react';
+import type { SyntheticEvent } from 'react';
+import { useLocation, useRoute } from 'wouter';
+import { Flexbox, SvgIcon, Seo } from '../index';
+import { PageTab, useTabsStore } from '../../store';
+import { defaultPage, findPage } from '../../pages';
+import { usePost } from '../../hooks';
+import * as SC from './styles';
 
-const Markdown = lazy(() => import("../markdown/markdown"));
+const Markdown = lazy(() => import('../markdown/markdown'));
 
 type TabpanelIconProps = {
   active?: boolean;
@@ -35,7 +34,7 @@ type TabpanelHeaderProps = {
   icon: string;
   onClose: () => void;
   onClick: (event: SyntheticEvent) => void;
-  type: "seticon" | "codicon";
+  type: 'seticon' | 'codicon';
 };
 
 const TabpanelHeader = ({
@@ -61,8 +60,8 @@ const TabpanelHeader = ({
       title={title}
       onClick={onClick}
     >
-      {type === "codicon" && <SC.Codicon name={icon} title={title} />}
-      {type === "seticon" && <SvgIcon name={icon} title={title} />}
+      {type === 'codicon' && <SC.Codicon name={icon} title={title} />}
+      {type === 'seticon' && <SvgIcon name={icon} title={title} />}
       <SC.TabpanelTitle>{title}</SC.TabpanelTitle>
       <SC.TabpanelAction>
         {showCloseIcon && (
@@ -85,7 +84,7 @@ const EditButton = () => {
         name="edit"
         active
         title="Suggest a modification"
-        onClick={() => {}}
+        onClick={() => null}
       />
     </SC.TabpanelAction>
   );
@@ -93,7 +92,7 @@ const EditButton = () => {
 
 const useTabpaneActions = () => {
   const [location, setLocation] = useLocation();
-  const [matchPosts, params] = useRoute("/posts/:slug");
+  const [matchPosts, params] = useRoute('/posts/:slug');
 
   const {
     data: post,
@@ -132,7 +131,7 @@ const useTabpaneActions = () => {
 
       focusTab(nextTab);
       setLocation(
-        nextTab.type === "post"
+        nextTab.type === 'post'
           ? `/posts/${nextTab.slug}`
           : nextTab.slug
       );
@@ -145,17 +144,17 @@ const useTabpaneActions = () => {
     }
 
     if (!page) {
-      return setLocation("/");
+      return setLocation('/');
     }
 
     const newTab: PageTab = {
       ...page,
-      type: matchPosts ? "post" : "page",
+      type: matchPosts ? 'post' : 'page',
     };
 
     openTab(newTab);
     focusTab(newTab);
-  }, [enabled, isLoading, page, matchPosts]);
+  }, [enabled, isLoading, page, matchPosts, openTab, focusTab, setLocation]);
 
   return {
     onOpenTab: setLocation,
@@ -173,7 +172,7 @@ const BlogPostFooter = () => {
       <iframe
         src="https://ghbtns.com/github-btn.html?user=bacarybruno&repo=code-bbblog&type=star&count=true&v=2"
         scrolling="0"
-        style={{ margin: "auto", border: 0 }}
+        style={{ margin: 'auto', border: 0 }}
         height={30}
       />
     </div>
@@ -186,13 +185,13 @@ const TabpaneContent = () => {
 
   let publishedAt = null;
   let readTime = null;
-  if (currentTab.type === "post") {
-    publishedAt = new Intl.DateTimeFormat("en-US", {
-      dateStyle: "long",
+  if (currentTab.type === 'post' && typeof currentTab.body === 'string') {
+    publishedAt = new Intl.DateTimeFormat('en-US', {
+      dateStyle: 'long',
     }).format(
       new Date((currentTab.sys as { publishedAt: string }).publishedAt)
     );
-    readTime = readingTime(currentTab.body).text;
+    readTime = `${readingTime(currentTab.body).minutes} min read`;
   }
 
   const Content = currentTab.body;
@@ -201,7 +200,7 @@ const TabpaneContent = () => {
   };
 
   if (currentTab.excerpt) {
-    seoProps["description"] = currentTab.excerpt;
+    seoProps['description'] = currentTab.excerpt;
   }
 
   return (
@@ -209,7 +208,7 @@ const TabpaneContent = () => {
       <SC.TabpaneContent>
         <>
           <Seo {...seoProps} />
-          {currentTab.type === "post" && (
+          {currentTab.type === 'post' && (
             <SC.BlogPostHeader>
               <SC.BlogPostTitle>{currentTab.title}</SC.BlogPostTitle>
               <Flexbox>
@@ -224,7 +223,7 @@ const TabpaneContent = () => {
             </SC.BlogPostHeader>
           )}
           <article>
-            {typeof Content === "string" ? (
+            {typeof Content === 'string' ? (
               <Suspense fallback={null}>
                 <Markdown content={Content} />
               </Suspense>
@@ -232,7 +231,7 @@ const TabpaneContent = () => {
               <Content />
             )}
           </article>
-          {currentTab.type === "post" && (
+          {currentTab.type === 'post' && (
             <footer>
               <BlogPostFooter />
             </footer>
@@ -258,9 +257,9 @@ const TabpaneHeader = () => {
               title={tab.title}
               icon={tab.icon}
               key={tab.slug}
-              type={tab.type === "page" ? "codicon" : "seticon"}
+              type={tab.type === 'page' ? 'codicon' : 'seticon'}
               onClick={() =>
-                onOpenTab(tab.type === "post" ? `/posts/${tab.slug}` : tab.slug)
+                onOpenTab(tab.type === 'post' ? `/posts/${tab.slug}` : tab.slug)
               }
               onClose={() => onCloseTab(tab.slug)}
               active={currentTab?.slug.toLowerCase() === tab.slug.toLowerCase()}
@@ -279,7 +278,7 @@ export const Tabpane = () => {
   useEffect(() => {
     if (!currentTab) return;
     const scrollElement = document.getElementById(
-      window.location.hash.replace("#", "")
+      window.location.hash.replace('#', '')
     );
     if (scrollElement) {
       scrollElement.scrollIntoView();

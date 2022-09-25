@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "indent": ["error", 2],
+    "semi": "error",
+    "quotes": ["error", "single"]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

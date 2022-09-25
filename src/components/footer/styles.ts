@@ -1,4 +1,4 @@
-import { styled } from "@linaria/react";
+import { styled } from '@linaria/react';
 
 export const FooterButton = styled.div`
   cursor: pointer;

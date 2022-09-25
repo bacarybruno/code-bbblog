@@ -1,8 +1,8 @@
-import { styled } from "@linaria/react";
-import { useLayoutStore } from "../store";
-import { Container } from "./container";
-import { Flexbox } from "./flexbox";
-import { Tabpane } from "./tabpane/tabpane";
+import { styled } from '@linaria/react';
+import { useLayoutStore } from '../store';
+import { Container } from './container';
+import { Flexbox } from './flexbox';
+import { Tabpane } from './tabpane/tabpane';
 
 const Wrapper = styled(Container)<{ showSidebar: boolean }>`
   background-color: rgb(30, 30, 30);

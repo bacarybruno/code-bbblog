@@ -1,5 +1,5 @@
-import { styled } from "@linaria/react";
-import type { CSSProperties, ReactNode } from "react";
+import { styled } from '@linaria/react';
+import type { CSSProperties, ReactNode } from 'react';
 
 type ContainerProps = {
   className?: string;

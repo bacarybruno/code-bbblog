@@ -1,8 +1,8 @@
-import { defineCustomElements as deckDeckGoElement } from "@deckdeckgo/highlight-code/dist/loader/index";
-import type { ReactNode } from "react";
-import { useState } from "react";
-import * as SC from "./styles";
-import { Icon } from "../icon";
+import { defineCustomElements as deckDeckGoElement } from '@deckdeckgo/highlight-code/dist/loader/index';
+import type { ReactNode } from 'react';
+import { useState } from 'react';
+import * as SC from './styles';
+import { Icon } from '../icon';
 
 deckDeckGoElement();
 
@@ -18,7 +18,7 @@ const configRegex = /\/\/ meta (.*)/;
 type HighlightCodeProps = {
   language: string;
   children: ReactNode;
-  "highlight-lines"?: string;
+  'highlight-lines'?: string;
 };
 
 type CodeConfig = { markText?: string; fileName?: string } | undefined;
@@ -33,7 +33,7 @@ const CodeHighlighter = ({
 
   const configMatch = configRegex.exec(rawCode);
   const config: CodeConfig = configMatch ? JSON.parse(configMatch[1]) : undefined;
-  const code = rawCode.replace(configRegex, "").trim();
+  const code = rawCode.replace(configRegex, '').trim();
 
   const copyCodeToClipboard = async () => {
     await navigator.clipboard.writeText(code);
@@ -53,7 +53,7 @@ const CodeHighlighter = ({
       <SC.ControlsWrapper>
         <SC.ClipboardCopy onClick={copyCodeToClipboard}>
           <Icon
-            name={showCopySuccess ? "check" : "copy"}
+            name={showCopySuccess ? 'check' : 'copy'}
             title="Copy to clipboard"
             size="small"
           />
@@ -73,9 +73,10 @@ export default CodeHighlighter;
 
 // TODO: move this to a .d.ts file
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
-      "deckgo-highlight-code": HighlightCodeProps;
+      'deckgo-highlight-code': HighlightCodeProps;
     }
   }
 }
