@@ -2,7 +2,7 @@ import readingTime from 'reading-time';
 import { Suspense, useEffect, useState, lazy } from 'react';
 import type { SyntheticEvent } from 'react';
 import { useLocation, useRoute } from 'wouter';
-import { Flexbox, SvgIcon, Seo } from '../index';
+import { Flexbox, SvgIcon, Seo, Comments } from '../index';
 import { PageTab, useTabsStore } from '../../store';
 import { defaultPage, findPage } from '../../pages';
 import { usePost } from '../../hooks';
@@ -131,9 +131,7 @@ const useTabpaneActions = () => {
 
       focusTab(nextTab);
       setLocation(
-        nextTab.type === 'post'
-          ? `/posts/${nextTab.slug}`
-          : nextTab.slug
+        nextTab.type === 'post' ? `/posts/${nextTab.slug}` : nextTab.slug
       );
     }
   };
@@ -175,6 +173,7 @@ const BlogPostFooter = () => {
         style={{ margin: 'auto', border: 0 }}
         height={30}
       />
+      <Comments />
     </div>
   );
 };
