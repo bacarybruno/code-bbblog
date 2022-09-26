@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { Container, Icon } from '../index';
+import { Container, Codicon as Icon } from '../index';
 import { Header } from '../markdown/styles';
 export { Paragraph } from '../markdown/styles';
 

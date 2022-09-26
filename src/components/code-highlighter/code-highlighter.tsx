@@ -2,7 +2,7 @@ import { defineCustomElements as deckDeckGoElement } from '@deckdeckgo/highlight
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 import * as SC from './styles';
-import { Icon } from '../icon';
+import { Codicon } from '../icon';
 
 deckDeckGoElement();
 
@@ -52,7 +52,7 @@ const CodeHighlighter = ({
       {config?.fileName && <SC.WindowTitle>{config?.fileName}</SC.WindowTitle>}
       <SC.ControlsWrapper>
         <SC.ClipboardCopy onClick={copyCodeToClipboard}>
-          <Icon
+          <Codicon
             name={showCopySuccess ? 'check' : 'copy'}
             title="Copy to clipboard"
             size="small"

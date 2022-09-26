@@ -1,5 +1,5 @@
 import { Flexbox } from '../flexbox';
-import { Icon } from '../icon';
+import { Codicon } from '../icon';
 import * as SC from './styles';
 
 type FooterButtonProps = {
@@ -10,7 +10,7 @@ type FooterButtonProps = {
 const FooterButton = ({ iconName, title }: FooterButtonProps) => {
   return (
     <SC.FooterButton title={title} role="button">
-      <Icon name={iconName} title={title} />
+      <Codicon name={iconName} title={title} />
     </SC.FooterButton>
   );
 };

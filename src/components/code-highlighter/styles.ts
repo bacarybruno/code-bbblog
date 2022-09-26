@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { Icon } from '../icon';
+import { Codicon } from '../icon';
 
 export const ControlsWrapper = styled.div`
   position: relative;
@@ -22,7 +22,7 @@ export const Code = styled.span`
   line-height: 1.357rem;
 `;
 
-export const ClipboardIcon = styled(Icon)`
+export const ClipboardIcon = styled(Codicon)`
   color: rgba(240, 246, 252, 0.1);
 `;
 
