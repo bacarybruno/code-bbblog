@@ -6,6 +6,6 @@ export { Container } from './container';
 export { Content } from './content';
 export { Flexbox } from './flexbox';
 export { Footer } from './footer/footer';
-export { Icon, SvgIcon } from './icon';
+export { Codicon, SvgIcon } from './icon';
 export { Layout } from './layout';
 export { Seo } from './seo';

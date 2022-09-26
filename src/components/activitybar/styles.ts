@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { Icon } from '../icon';
+import { Codicon } from '../icon';
 
 export const MenubarButton = styled.div`
   width: 100%;
@@ -29,7 +29,7 @@ export const MenuAction = styled.div<{ active?: boolean }>`
     ${(props) => (props.active ? 'rgb(255,255,255)' : 'unset')};
 `;
 
-export const MenuActionIcon = styled(Icon)<{ active?: boolean }>`
+export const MenuActionIcon = styled(Codicon)<{ active?: boolean }>`
   color: ${(props) =>
     props.active ? 'rgb(255,255,255)' : 'rgba(255,255,255,0.4)'};
 `;

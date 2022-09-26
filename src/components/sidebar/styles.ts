@@ -1,6 +1,6 @@
 import { styled } from '@linaria/react';
 import { Container } from '../container';
-import { Icon as BaseIcon, SvgIcon } from '../icon';
+import { Codicon as BaseIcon, SvgIcon } from '../icon';
 
 export const Sidebar = styled.nav`
   width: 300px;

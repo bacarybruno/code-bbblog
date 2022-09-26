@@ -1,6 +1,6 @@
 import { useLocation } from 'wouter';
 import type { SyntheticEvent } from 'react';
-import { Flexbox, Icon } from '../index';
+import { Flexbox, Codicon } from '../index';
 import { useLayoutStore, useTabsStore } from '../../store';
 import * as SC from './styles';
 
@@ -11,7 +11,7 @@ type MenubarProps = {
 const Menubar = ({ onClick }: MenubarProps) => {
   return (
     <SC.MenubarButton role="button" onClick={onClick}>
-      <Icon name="menu" title="Menu" />
+      <Codicon name="menu" title="Menu" />
     </SC.MenubarButton>
   );
 };
