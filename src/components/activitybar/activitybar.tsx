@@ -42,7 +42,7 @@ const MenuAction = ({
       role="button"
       title={title}
       onClick={onClick}
-      active={active}
+      data-active={active}
     >
       <LinkComponent
         href={href || ''}

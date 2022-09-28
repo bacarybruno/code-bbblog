@@ -28,7 +28,7 @@ export const Sidebar = () => {
                 key={post.slug}
                 title={post.title}
                 href={`/posts/${post.slug}`}
-                active={
+                data-active={
                   currentTab?.slug.toLowerCase() === post.slug.toLowerCase()
                 }
               >

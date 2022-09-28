@@ -65,7 +65,7 @@ export const PanelIcon = styled(BaseIcon)`
   color: #c5c5c5;
 `;
 
-export const ListItem = styled(Link)<{ active?: boolean }>`
+export const ListItem = styled(Link)`
   color: #ccc;
   padding-left: 20px;
   padding-right: 20px;
@@ -74,9 +74,9 @@ export const ListItem = styled(Link)<{ active?: boolean }>`
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: ${(props) => (props.active ? '#37373d' : 'transparent')};
+  background-color: ${(props) => (props['data-active'] ? '#37373d' : 'transparent')};
   &:hover {
-    background-color: ${(props) => (props.active ? '#37373d' : '#2a2d2e')};
+    background-color: ${(props) => (props['data-active'] ? '#37373d' : '#2a2d2e')};
     text-decoration: none;
   }
 `;

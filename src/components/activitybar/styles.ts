@@ -16,7 +16,7 @@ export const MenubarButton = styled.div`
   }
 `;
 
-export const MenuAction = styled.div<{ active?: boolean }>`
+export const MenuAction = styled.div`
   height: 48px;
   display: flex;
   flex: none;
@@ -27,7 +27,7 @@ export const MenuAction = styled.div<{ active?: boolean }>`
     color: #fff;
   }
   border-left: 2px solid
-    ${(props) => (props.active ? 'rgb(255,255,255)' : 'unset')};
+    ${(props) => (props['data-active'] ? 'rgb(255,255,255)' : 'unset')};
 `;
 
 export const MenuActionIcon = styled(Codicon)<{ active?: boolean }>`
