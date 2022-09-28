@@ -59,6 +59,7 @@ const TabpanelHeader = ({
       onMouseLeave={() => setShowCloseIcon(false)}
       title={title}
       onClick={onClick}
+      className="tabpane__header"
     >
       {type === 'codicon' && <SC.Codicon name={icon} title={title} />}
       {type === 'seticon' && <SvgIcon name={icon} title={title} />}
