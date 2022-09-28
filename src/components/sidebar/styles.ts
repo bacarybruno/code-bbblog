@@ -1,4 +1,5 @@
 import { styled } from '@linaria/react';
+import { Link } from 'wouter';
 import { Container } from '../container';
 import { Codicon as BaseIcon, SvgIcon } from '../icon';
 
@@ -64,7 +65,8 @@ export const PanelIcon = styled(BaseIcon)`
   color: #c5c5c5;
 `;
 
-export const ListItem = styled.li<{ active?: boolean }>`
+export const ListItem = styled(Link)<{ active?: boolean }>`
+  color: #ccc;
   padding-left: 20px;
   padding-right: 20px;
   width: 100%;
@@ -75,6 +77,7 @@ export const ListItem = styled.li<{ active?: boolean }>`
   background-color: ${(props) => (props.active ? '#37373d' : 'transparent')};
   &:hover {
     background-color: ${(props) => (props.active ? '#37373d' : '#2a2d2e')};
+    text-decoration: none;
   }
 `;
 

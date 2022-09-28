@@ -1,3 +1,4 @@
+import { css } from '@linaria/core';
 import { styled } from '@linaria/react';
 import { Codicon } from '../icon';
 
@@ -41,4 +42,10 @@ export const Activitybar = styled.div`
   position: absolute;
   left: 0px;
   height: calc(100% - 22px);
+`;
+
+export const LinkFill = css`
+  position: absolute;
+  width: 100%;
+  height: inherit;
 `;

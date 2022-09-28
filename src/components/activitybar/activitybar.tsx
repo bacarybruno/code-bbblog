@@ -1,4 +1,5 @@
-import { useLocation } from 'wouter';
+import { Link } from 'wouter';
+import { useMemo } from 'react';
 import type { SyntheticEvent } from 'react';
 import { Flexbox, Codicon } from '../index';
 import { useLayoutStore, useTabsStore } from '../../store';
@@ -19,11 +20,23 @@ const Menubar = ({ onClick }: MenubarProps) => {
 type MenuActionProps = {
   iconName: string;
   title: string;
-  onClick: (event: SyntheticEvent) => void;
+  onClick?: (event: SyntheticEvent) => void;
   active?: boolean;
+  href?: string;
 };
 
-const MenuAction = ({ iconName, title, onClick, active }: MenuActionProps) => {
+const MenuAction = ({
+  iconName,
+  title,
+  onClick,
+  active,
+  href,
+}: MenuActionProps) => {
+  const LinkComponent = useMemo(() => {
+    if (!href && !onClick) return 'div';
+    return href?.startsWith('/') ? Link : 'a';
+  }, [href, onClick]);
+
   return (
     <SC.MenuAction
       role="button"
@@ -31,6 +44,12 @@ const MenuAction = ({ iconName, title, onClick, active }: MenuActionProps) => {
       onClick={onClick}
       active={active}
     >
+      <LinkComponent
+        href={href || ''}
+        target="_blank"
+        title={title}
+        className={SC.LinkFill}
+      />
       <SC.MenuActionIcon
         name={iconName}
         size="medium"
@@ -42,7 +61,6 @@ const MenuAction = ({ iconName, title, onClick, active }: MenuActionProps) => {
 };
 
 export const Activitybar = () => {
-  const [, setLocation] = useLocation();
   const currentTab = useTabsStore((state) => state.currentTab);
   const toggleSidebar = useLayoutStore((state) => state.toggleSidebar);
 
@@ -54,39 +72,35 @@ export const Activitybar = () => {
           <MenuAction
             iconName="home"
             title="Home"
-            onClick={() => setLocation('/')}
+            href="/"
             active={currentTab?.slug.toLowerCase() === '/'}
           />
-          <MenuAction iconName="search" title="Search" onClick={() => null} />
+          <MenuAction iconName="search" title="Search" href="" />
           <MenuAction
             iconName="account"
             title="About me"
-            onClick={() => setLocation('/about')}
+            href="/about"
             active={currentTab?.slug.toLowerCase() === '/about'}
           />
           <MenuAction
             iconName="book"
             title="Blog"
-            onClick={() => setLocation('/blog')}
+            href="/blog"
             active={currentTab?.slug.toLowerCase() === '/blog'}
           />
           <MenuAction
             iconName="json"
             title="My projects"
-            onClick={() => window.open('https://github.com/bacarybruno?tab=repositories', '_blank')}
+            href="https://github.com/bacarybruno?tab=repositories"
           />
         </div>
         <div>
           <MenuAction
             iconName="github"
             title="View this on GitHub"
-            onClick={() => window.open('https://github.com/bacarybruno/code-bbblog', '_blank')}
+            href="https://github.com/bacarybruno/code-bbblog"
           />
-          <MenuAction
-            iconName="settings-gear"
-            title="Settings"
-            onClick={() => null}
-          />
+          <MenuAction iconName="settings-gear" title="Settings" />
         </div>
       </Flexbox>
     </SC.Activitybar>
