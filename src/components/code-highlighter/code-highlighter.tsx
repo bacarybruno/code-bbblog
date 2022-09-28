@@ -21,7 +21,11 @@ type HighlightCodeProps = {
   'highlight-lines'?: string;
 };
 
-type CodeConfig = { markText?: string; fileName?: string } | undefined;
+type CodeConfig = {
+  markText?: string;
+  fileName?: string;
+  lineNumbers?: boolean;
+};
 
 const CodeHighlighter = ({
   code: rawCode,
@@ -32,7 +36,9 @@ const CodeHighlighter = ({
   const [showCopySuccess, setShowCopySuccess] = useState(false);
 
   const configMatch = configRegex.exec(rawCode);
-  const config: CodeConfig = configMatch ? JSON.parse(configMatch[1]) : undefined;
+  const config: CodeConfig | undefined = configMatch
+    ? JSON.parse(configMatch[1])
+    : undefined;
   const code = rawCode.replace(configRegex, '').trim();
 
   const copyCodeToClipboard = async () => {
@@ -62,6 +68,7 @@ const CodeHighlighter = ({
       <deckgo-highlight-code
         language={language}
         highlight-lines={config?.markText}
+        line-numbers={config?.lineNumbers}
       >
         <code slot="code">{code}</code>
       </deckgo-highlight-code>
