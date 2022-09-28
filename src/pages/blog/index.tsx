@@ -20,7 +20,7 @@ const BlogPage = () => {
     return (
       <SC.Article key={post.sys.id}>
         <header>
-          <Link href={`/posts/${post.slug}`} target="_blank">
+          <Link href={`/posts/${post.slug}`}>
             <SC.Title>
               <SvgIcon name={post.icon} title={post.title} size="medium" />
               {post.title}
