@@ -61,7 +61,6 @@ export default async (_request: VercelRequest, response: VercelResponse) => {
         <url>
           <loc>https://bacarybruno.com${path}</loc>
           <changefreq>daily</changefreq>
-          <priority>0.7</priority>
         </url>
       `).join('')}
     </urlset>
