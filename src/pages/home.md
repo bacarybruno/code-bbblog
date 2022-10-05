@@ -1,4 +1,4 @@
-<header>✌️ Hello! I'm Bruno (or Bacary, you choose)</header>
+<header>👨🏽‍💻 Hello! I'm Bruno (or Bacary, you choose)</header>
 
 A human who is on his journey to become the *best version possible* of himself,<br /> A **FullStack Developer** and *Lifelong learner* who loves building great products that has a positive impact 🤩.
 
