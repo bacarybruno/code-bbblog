@@ -14,7 +14,7 @@ export const Seo = ({
   imageUrl,
 }: SeoProps) => {
   return (
-    <Helmet>
+    <Helmet defaultTitle="Code-BBBlog" titleTemplate="Code-BBBlog | %s">
       {/* Primary Meta Tags */}
       <title>{title}</title>
       <meta name="title" content={title} />
