@@ -15,7 +15,6 @@ const meta: Meta = {
   image: 'https://placehold.co/600x400/EEE/31343C/png?text=Hello! I\'m Bruno&font=Roboto',
 };
 
-// TODO: add cache control
 export default async (request: VercelRequest, response: VercelResponse) => {
   meta.url = getBaseUrl(request.url);
   const stringified = getParsedHTML(meta);

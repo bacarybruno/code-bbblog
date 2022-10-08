@@ -34,7 +34,6 @@ const findPostBySlug = async (slug: string) => {
   return result;
 };
 
-// TODO: add cache control
 export default async (request: VercelRequest, response: VercelResponse) => {
   const data = await findPostBySlug(request.query.title as string);
   const post = data.blogPostCollection.items[0];
