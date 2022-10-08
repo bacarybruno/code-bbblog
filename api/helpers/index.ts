@@ -15,7 +15,8 @@ export const getBaseUrl = (requestUrl = '') => {
     process.env.VITE_VERCEL_URL ||
     'https://bacarybruno.com';
   baseUrl = baseUrl.startsWith('http') ? baseUrl : `https://${baseUrl}`;
-  return baseUrl + requestUrl.split('?')[0];
+  baseUrl = baseUrl + requestUrl.split('?')[0];
+  return baseUrl.replace(/\/$/, '');
 };
 
 export const getParsedHTML = (meta: Meta) => {
