@@ -4,7 +4,7 @@
     { "src": "/sitemap.xml", "dest": "/api/sitemap.ts" },
     { "src": "/about", "dest": "/api/about.ts" },
     { "src": "/blog", "dest": "/api/blog.ts" },
-    { "src": "/posts/:title", "dest": "/api/post.ts" },
+    { "src": "/posts/(?<title>[^/]+)", "dest": "/api/post.ts?title=$title" },
     { "handle": "filesystem" }
   ]
 }

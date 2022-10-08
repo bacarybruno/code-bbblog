@@ -36,13 +36,14 @@ const findPostBySlug = async (slug: string) => {
 
 // TODO: add cache control
 export default async (request: VercelRequest, response: VercelResponse) => {
-  const post = await findPostBySlug(request.query.title as string);
+  const data = await findPostBySlug(request.query.title as string);
+  const post = data.blogPostCollection.items[0];
 
   const meta: Meta = {
-    title: `CodeBBBlog | ${post.blogPostCollection.items[0]?.title}`,
-    description: post.blogPostCollection.items[0]?.excerpt,
+    title: post?.title,
+    description: post?.excerpt,
     url: getBaseUrl(request.url),
-    image: null,
+    image: `https://placehold.co/900x450/007ACC/FFFFFF?text=${post?.title}&font=Roboto`,
   };
   const stringified = getParsedHTML(meta);
 
