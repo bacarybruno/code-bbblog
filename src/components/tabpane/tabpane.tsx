@@ -195,19 +195,12 @@ const TabpaneContent = () => {
   }
 
   const Content = currentTab.body;
-  const seoProps: Record<string, unknown> = {
-    title: currentTab.title,
-  };
-
-  if (currentTab.excerpt) {
-    seoProps['description'] = currentTab.excerpt;
-  }
 
   return (
     <SC.TabpaneContainer>
       <SC.TabpaneContent>
         <>
-          <Seo {...seoProps} />
+          <Seo title={currentTab.title} />
           {currentTab.type === 'post' && (
             <SC.BlogPostHeader>
               <SC.BlogPostTitle>{currentTab.title}</SC.BlogPostTitle>
