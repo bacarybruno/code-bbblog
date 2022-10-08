@@ -5,6 +5,6 @@
     { "source": "/about", "destination": "/api/about.ts" },
     { "source": "/blog", "destination": "/api/blog.ts" },
     { "source": "/posts/:title", "destination": "/api/post.ts" },
-    { "source": "\/", "destination": "/api/home.ts" }
+    { "source": "/", "destination": "/about" }
   ]
 }
