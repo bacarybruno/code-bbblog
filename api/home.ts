@@ -12,7 +12,7 @@ const meta: Meta = {
   title: 'Code-BBBlog | Home',
   description: '👨🏽‍💻 Hello! I\'m Bruno. A FullStack Developer and Lifelong learner who loves building great products that has a positive impact 🤩 Passionate about Software Engineering 💻, japanese anime\'s 🥷 and building side projects.',
   url: '',
-  image: null,
+  image: 'https://placehold.co/900x450/007ACC/FFFFFF?text=Hello! I\'m Bruno&font=Roboto',
 };
 
 // TODO: add cache control
