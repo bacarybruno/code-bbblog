@@ -19,5 +19,7 @@ const meta: Meta = {
 export default async (request: VercelRequest, response: VercelResponse) => {
   meta.url = getBaseUrl(request.url);
   const stringified = getParsedHTML(meta);
-  return response.setHeader('Content-Type', 'text/html').send(stringified);
+  return response
+    .setHeader('Cache-Control', 's-maxage=86400')
+    .setHeader('Content-Type', 'text/html').send(stringified);
 };
