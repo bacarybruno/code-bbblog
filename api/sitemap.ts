@@ -1,5 +1,6 @@
 import { request, gql } from 'graphql-request';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { getContentfulApiURL } from './helpers';
 
 const staticPages = ['', '/about', '/blog'];
 
@@ -9,23 +10,6 @@ type BlogPostCollection = {
 
 const getDynamicPages = async () => {
   try {
-    console.log('Going to fetch blog posts slug');
-
-    const spaceId = process.env.VITE_CONTENTFUL_SPACE_ID;
-    const apiKey = process.env.VITE_CONTENTFUL_API_KEY;
-
-    console.log('Going to check env variables');
-
-    if (!spaceId) {
-      throw new Error('`process.env.VITE_CONTENTFUL_SPACE_ID` is missing');
-    }
-
-    if (!apiKey) {
-      throw new Error('`process.env.VITE_CONTENTFUL_API_KEY` is missing');
-    }
-
-    console.log('Successfully checked env variables');
-
     const query = gql`
       query FetchPosts {
         blogPostCollection {
@@ -37,7 +21,7 @@ const getDynamicPages = async () => {
     `;
 
     console.log('Going to send API request');
-    const apiURL = `https://graphql.contentful.com/content/v1/spaces/${spaceId}?access_token=${apiKey}`;
+    const apiURL = getContentfulApiURL();
     const result = await request<BlogPostCollection>(apiURL, query);
     console.log('Successfully sent API request');
     return result.blogPostCollection.items.map((item) => `/posts/${item.slug}`);

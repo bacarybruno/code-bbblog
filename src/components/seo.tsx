@@ -10,9 +10,11 @@ type SeoProps = {
 export const Seo = ({
   title = 'Code-BBBlog',
   websiteUrl = window.location.href.split(/[?#]/)[0],
-  description = '✌️ Hello! I\'m Bruno. A FullStack Developer and Lifelong learner who loves building great products that has a positive impact 🤩 Passionate about Software Engineering 💻, japanese anime\'s 🥷 and building side projects.',
+  description = '👨🏽‍💻 Hello! I\'m Bruno. A FullStack Developer and Lifelong learner who loves building great products that has a positive impact 🤩 Passionate about Software Engineering 💻, japanese anime\'s 🥷 and building side projects.',
   imageUrl,
 }: SeoProps) => {
+  // TODO: remove this
+  return null;
   return (
     <Helmet defaultTitle="Code-BBBlog" titleTemplate="Code-BBBlog | %s">
       {/* Primary Meta Tags */}
