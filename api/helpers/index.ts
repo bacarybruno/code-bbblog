@@ -25,7 +25,7 @@ export const getParsedHTML = (meta: Meta) => {
     .replace(/{{title}}/g, meta.title)
     .replace(/{{description}}/g, meta.description)
     .replace(/{{url}}/g, meta.url)
-    .replace(/{{image}}/g, meta.image || '');
+    .replace(/{{image}}/g, meta.image?.split(' ').join('+') || '');
 };
 
 export const getContentfulApiURL = () => {
