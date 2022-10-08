@@ -2,7 +2,7 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap.ts" },
-    { "source": "", "destination": "/api/home.ts" },
+    { "source": "/", "destination": "/api/home.ts" },
     { "source": "/about", "destination": "/api/about.ts" },
     { "source": "/blog", "destination": "/api/blog.ts" },
     { "source": "/posts/:title", "destination": "/api/post.ts" }
