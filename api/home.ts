@@ -20,5 +20,6 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   const stringified = getParsedHTML(meta);
   return response
     .setHeader('Cache-Control', 's-maxage=86400')
-    .setHeader('Content-Type', 'text/html').send(stringified);
+    .setHeader('Content-Type', 'text/html')
+    .send(stringified);
 };
