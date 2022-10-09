@@ -51,8 +51,6 @@ export default async (_request: VercelRequest, response: VercelResponse) => {
   `;
 
   return response
-    .status(200)
     .setHeader('Content-Type', 'application/xml')
-    .setHeader('Cache-Control', 's-maxage=86400')
     .send(sitemap);
 };
