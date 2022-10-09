@@ -5,6 +5,7 @@
     { "src": "/about", "dest": "/api/about.ts" },
     { "src": "/blog", "dest": "/api/blog.ts" },
     { "src": "/posts/(?<title>[^/]+)", "dest": "/api/post.ts?title=$title" },
-    { "handle": "filesystem" }
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404, "dest": "/api/home.ts" }
   ]
 }
