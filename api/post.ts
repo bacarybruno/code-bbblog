@@ -39,7 +39,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   const post = data.blogPostCollection.items[0];
 
   const meta: Meta = {
-    title: `CodeBBBlog | ${post?.title}`,
+    title: `Code-BBBlog | ${post?.title}`,
     description: post?.excerpt,
     url: getBaseUrl(request.url),
     image: `https://placehold.co/600x400/EEE/31343C/png?text=${post?.title}&font=Roboto`,
