@@ -113,7 +113,7 @@ const convertToPng = (svg, width) => {
 };
 
 export default async (request, response) => {
-  const { text = 'Hello! I\'m Bruno', width = 600, height = 400 } = request.query;
+  const { text = 'Hello! I\'m Bruno', width = 1200, height = 627 } = request.query;
 
   const svg = await generateSVG(text, width, height);
   const png = convertToPng(svg, width);
