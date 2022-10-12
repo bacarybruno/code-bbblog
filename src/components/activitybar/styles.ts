@@ -23,6 +23,12 @@ export const MenuAction = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  & > a {
+    width: 48px;
+  }
+  & > div {
+    width: 48px;
+  }
   &:hover > i {
     color: #fff;
   }
@@ -39,9 +45,7 @@ export const Activitybar = styled.div`
   background-color: rgb(51, 51, 51);
   width: 48px;
   flex: none;
-  position: absolute;
   left: 0px;
-  height: calc(100% - 22px);
 `;
 
 export const LinkFill = css`

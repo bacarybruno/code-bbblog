@@ -4,6 +4,7 @@ import type { SyntheticEvent } from 'react';
 import { Flexbox, Codicon } from '../index';
 import { useLayoutStore, useTabsStore } from '../../store';
 import * as SC from './styles';
+import { isMobile } from '../../utils';
 
 type MenubarProps = {
   onClick: (event: SyntheticEvent) => void;
@@ -63,6 +64,11 @@ const MenuAction = ({
 export const Activitybar = () => {
   const currentTab = useTabsStore((state) => state.currentTab);
   const toggleSidebar = useLayoutStore((state) => state.toggleSidebar);
+  const showSidebar = useLayoutStore((state) => state.showSidebar);
+
+  if (!showSidebar && isMobile()) {
+    return null;
+  }
 
   return (
     <SC.Activitybar>

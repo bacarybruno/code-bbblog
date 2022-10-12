@@ -1,12 +1,18 @@
 import { useState } from 'react';
-import { useTabsStore } from '../../store';
+import { useTabsStore, useLayoutStore } from '../../store';
 import { usePosts } from '../../hooks';
 import * as SC from './styles';
 
 export const Sidebar = () => {
-  const { currentTab } = useTabsStore();
-  const [showArticles, setShowArticles] = useState(true);
   const { data: posts } = usePosts();
+  const currentTab = useTabsStore((state) => state.currentTab);
+  const showSidebar = useLayoutStore((state) => state.showSidebar);
+  const toggleSidebar = useLayoutStore((state) => state.toggleSidebar);
+  const [showArticles, setShowArticles] = useState(true);
+
+  if (!showSidebar) {
+    return null;
+  }
 
   return (
     <SC.Sidebar>
@@ -28,6 +34,7 @@ export const Sidebar = () => {
                 key={post.slug}
                 title={post.title}
                 href={`/posts/${post.slug}`}
+                onClick={toggleSidebar}
                 data-active={
                   currentTab?.slug.toLowerCase() === post.slug.toLowerCase()
                 }
