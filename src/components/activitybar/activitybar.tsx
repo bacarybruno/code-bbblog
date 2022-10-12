@@ -80,6 +80,7 @@ export const Activitybar = () => {
             title="Home"
             href="/"
             active={currentTab?.slug.toLowerCase() === '/'}
+            onClick={toggleSidebar}
           />
           <MenuAction iconName="search" title="Search" href="" />
           <MenuAction
@@ -87,12 +88,14 @@ export const Activitybar = () => {
             title="About me"
             href="/about"
             active={currentTab?.slug.toLowerCase() === '/about'}
+            onClick={toggleSidebar}
           />
           <MenuAction
             iconName="book"
             title="Blog"
             href="/blog"
             active={currentTab?.slug.toLowerCase() === '/blog'}
+            onClick={toggleSidebar}
           />
           <MenuAction
             iconName="json"

@@ -25,6 +25,7 @@ export const Button = styled.div`
   text-align: center;
   font-size: 23px;
   cursor: pointer;
+  box-shadow: 0 10px 25px -5px rgb(0 122 204 / 60%);
 `;
 
 export const Icon = styled(Codicon)`
