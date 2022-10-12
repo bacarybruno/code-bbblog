@@ -20,7 +20,7 @@ export const getBaseUrl = (requestUrl = '') => {
 };
 
 export const getParsedHTML = (meta: Meta) => {
-  const file = join(__dirname, '../../dist', 'index.html');
+  const file = join(process.cwd(), 'dist', 'index.html');
   return readFileSync(file, 'utf8')
     .replace(/{{title}}/g, meta.title)
     .replace(/{{description}}/g, meta.description)
