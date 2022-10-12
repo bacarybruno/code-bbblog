@@ -12,7 +12,7 @@ const meta: Meta = {
   title: 'Code-BBBlog | Home',
   description: '👨🏽‍💻 Hello! I\'m Bruno. A FullStack Developer and Lifelong learner who loves building great products that has a positive impact 🤩 Passionate about Software Engineering 💻, japanese anime\'s 🥷 and building side projects.',
   url: '',
-  image: 'https://placehold.co/600x400/EEE/31343C/png?text=Hello! I\'m Bruno&font=Roboto',
+  image: `${getBaseUrl()}/api/og?text=Hello! I'm Bruno`,
 };
 
 export default async (request: VercelRequest, response: VercelResponse) => {

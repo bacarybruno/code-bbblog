@@ -42,7 +42,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     title: `Code-BBBlog | ${post?.title}`,
     description: post?.excerpt,
     url: getBaseUrl(request.url),
-    image: `https://placehold.co/600x400/EEE/31343C/png?text=${post?.title}&font=Roboto`,
+    image: `${getBaseUrl()}/api/og?text=${post?.title}`,
   };
   const stringified = getParsedHTML(meta);
 
