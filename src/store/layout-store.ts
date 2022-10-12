@@ -1,5 +1,6 @@
 import create from 'zustand';
 import { immer } from 'zustand/middleware/immer';
+import { isMobile } from '../utils';
 
 interface LayoutStoreState {
   showSidebar: boolean;
@@ -9,7 +10,7 @@ interface LayoutStoreState {
 export const useLayoutStore = create<LayoutStoreState>()(
   immer((set) => ({
     // state
-    showSidebar: true,
+    showSidebar: isMobile() ? false : true,
 
     // actions
     toggleSidebar: () =>

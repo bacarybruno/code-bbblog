@@ -9,3 +9,4 @@ export { Footer } from './footer/footer';
 export { Codicon, SvgIcon } from './icon';
 export { Layout } from './layout';
 export { Seo } from './seo';
+export { Fab } from './fab/fab';

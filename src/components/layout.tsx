@@ -12,7 +12,7 @@ type LayoutProps = {
 export const Layout = ({ children }: LayoutProps) => {
   return (
     <Flexbox flexDirection="column">
-      <Container>{children}</Container>
+      <Container style={{ height: 'calc(100% - 22px)' }}>{children}</Container>
       <Footer />
     </Flexbox>
   );

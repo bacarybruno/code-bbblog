@@ -8,6 +8,7 @@ import {
   Layout,
   Sidebar,
   Seo,
+  Fab,
 } from './components';
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
           <Sidebar />
           <Content />
         </Flexbox>
+        <Fab />
       </Layout>
     </>
   );

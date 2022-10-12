@@ -8,9 +8,6 @@ export const Sidebar = styled.nav`
   flex: none;
   background-color: rgb(37, 37, 38);
   outline-color: rgba(83, 89, 93, 0.5);
-  position: absolute;
-  left: 48px;
-  height: calc(100% - 22px);
 `;
 
 export const SidebarTitle = styled.div`
