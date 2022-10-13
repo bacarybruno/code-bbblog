@@ -2,7 +2,7 @@ import { styled } from '@linaria/react';
 import { Codicon } from '../icon';
 
 export const Wrapper = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100px;
   height: 100px;
   bottom: 0;
