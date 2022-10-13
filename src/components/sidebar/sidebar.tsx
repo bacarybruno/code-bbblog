@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTabsStore, useLayoutStore } from '../../store';
 import { usePosts } from '../../hooks';
 import * as SC from './styles';
+import { isMobile } from '../../utils';
 
 export const Sidebar = () => {
   const { data: posts } = usePosts();
@@ -34,7 +35,7 @@ export const Sidebar = () => {
                 key={post.slug}
                 title={post.title}
                 href={`/posts/${post.slug}`}
-                onClick={toggleSidebar}
+                onClick={isMobile() ? toggleSidebar : undefined}
                 data-active={
                   currentTab?.slug.toLowerCase() === post.slug.toLowerCase()
                 }

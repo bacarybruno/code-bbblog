@@ -7,7 +7,7 @@ import * as SC from './styles';
 import { isMobile } from '../../utils';
 
 type MenubarProps = {
-  onClick: (event: SyntheticEvent) => void;
+  onClick?: (event: SyntheticEvent) => void;
 };
 
 const Menubar = ({ onClick }: MenubarProps) => {
@@ -80,7 +80,7 @@ export const Activitybar = () => {
             title="Home"
             href="/"
             active={currentTab?.slug.toLowerCase() === '/'}
-            onClick={toggleSidebar}
+            onClick={isMobile() ? toggleSidebar : undefined}
           />
           <MenuAction iconName="search" title="Search" href="" />
           <MenuAction
@@ -88,14 +88,14 @@ export const Activitybar = () => {
             title="About me"
             href="/about"
             active={currentTab?.slug.toLowerCase() === '/about'}
-            onClick={toggleSidebar}
+            onClick={isMobile() ? toggleSidebar : undefined}
           />
           <MenuAction
             iconName="book"
             title="Blog"
             href="/blog"
             active={currentTab?.slug.toLowerCase() === '/blog'}
-            onClick={toggleSidebar}
+            onClick={isMobile() ? toggleSidebar : undefined}
           />
           <MenuAction
             iconName="json"
