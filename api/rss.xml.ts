@@ -1,7 +1,8 @@
 import { request, gql } from 'graphql-request';
-import RSS from 'rss';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { getBaseUrl, getContentfulApiURL } from './helpers';
+// eslint-disable-next-line
+const RSS = require('rss');
 
 type BlogPostCollection = {
   blogPostCollection: {
@@ -52,7 +53,7 @@ export default async (_request: VercelRequest, response: VercelResponse) => {
   allBlogPosts.map((post) => {
     feed.item({
       title: post.title,
-      url: `${getBaseUrl()}/${post.slug}`,
+      url: `${getBaseUrl()}/posts/${post.slug}`,
       date: post.sys.publishedAt,
       description: post.excerpt
     });
