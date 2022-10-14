@@ -1,6 +1,5 @@
 import readingTime from 'reading-time';
 import { SvgIcon } from '../../components';
-import { Link } from '../../components/markdown/styles';
 import { BlogPostItem, usePosts } from '../../hooks/use-posts';
 import * as SC from './styles';
 
@@ -20,12 +19,10 @@ const BlogPage = () => {
     return (
       <SC.Article key={post.sys.id}>
         <header>
-          <Link href={`/posts/${post.slug}`}>
-            <SC.Title>
-              <SvgIcon name={post.icon} title={post.title} size="medium" />
-              {post.title}
-            </SC.Title>
-          </Link>
+          <SC.Link href={`/posts/${post.slug}`}>
+            <SvgIcon name={post.icon} title={post.title} size="medium" />
+            {post.title}
+          </SC.Link>
         </header>
         <span>{`Bruno Bodian / ${publishedAt} • ${readTime}`}</span>
         <SC.Excerpt>{post.excerpt}</SC.Excerpt>
