@@ -1,11 +1,11 @@
 {
   "routes": [
-    { "src": "/", "dest": "/api/home.ts" },
-    { "src": "/sitemap.xml", "dest": "/api/sitemap.xml.ts" },
-    { "src": "/rss.xml", "dest": "/api/rss.xml.ts" },
-    { "src": "/about", "dest": "/api/about.ts" },
-    { "src": "/blog", "dest": "/api/blog.ts" },
-    { "src": "/posts/(?<title>[^/]+)", "dest": "/api/post.ts?title=$title" },
+    { "src": "/", "dest": "/api/home" },
+    { "src": "/sitemap.xml", "dest": "/api/sitemap.xml" },
+    { "src": "/rss.xml", "dest": "/api/rss.xml" },
+    { "src": "/about", "dest": "/api/about" },
+    { "src": "/blog", "dest": "/api/blog" },
+    { "src": "/posts/(?<title>[^/]+)", "dest": "/api/post?title=$title" },
     { "handle": "filesystem" }
   ]
 }
